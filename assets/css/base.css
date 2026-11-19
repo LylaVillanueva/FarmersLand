@@ -1,0 +1,457 @@
+/* =========================================================
+   BASE.CSS: shared by BOTH pages (index.html + learn.html)
+   CONTENTS
+     0. Fonts (self-hosted)
+     1. Design tokens ... colour, spacing, type scale, outlines
+     2. Resets & body (selection, scrollbar, focus)
+     3. Text defaults (headings, strong, links, kbd)
+     4. .px-box ......... pixel box with notched corners
+     5. .px-btn ......... pixel buttons (.green .blue .red .paper .big .small)
+     6. .px-heart ....... tiny CSS pixel heart
+     7. .blink + reduced motion
+
+   RULES OF THUMB (keep the site consistent)
+     • Spacing: only use --sp-* (4px pixel grid). No 6/10/14/18/22px.
+     • Pixel font (Press Start 2P): only --t-micro -> --t-display.
+     • Body font (VT323): only --t-sm -> --t-xl.
+     • Colours: use the role tokens (--text, --accent…) before raw ones.
+   ========================================================= */
+
+/* 0. FONTS (hosted on this site, no Google requests; licence: assets/fonts/OFL-*.txt) */
+@font-face {
+  font-family: 'Press Start 2P'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('../fonts/press-start-2p-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Press Start 2P'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('../fonts/press-start-2p-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'VT323'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('../fonts/vt323-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'VT323'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('../fonts/vt323-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* 1. DESIGN TOKENS ----------------------------------------- */
+:root {
+  /* raw palette: sun-dried, earthy, matches the canvas art */
+  --ink: #2a1a14;        /* darkest brown, used instead of black */
+  --ink-2: #4a3226;
+  --ink-3: #3a2820;      /* raised surface on dark (menus) */
+  --ink-soft: #7a5e4a;   /* muted text on paper */
+  --paper: #fff6dc;      /* rice paper */
+  --paper-2: #f3e2b6;
+  --paper-3: #e8d29c;
+  --paper-hi: #fffdf3;
+  --chalk: #fffaea;      /* warm "white", never use pure #fff */
+  --straw: #d9c7a3;      /* muted text on dark */
+  --sky: #dff0fa;
+  --sky-2: #c8e4f5;
+  --sky-3: #cbe5f6;
+  --grass: #7cc35a;
+  --grass-hi: #9bd772;
+  --grass-d: #4f9a3c;
+  --grass-dd: #3a7a2e;
+  --grass-tint: #e3f4d6;
+  --soil: #8a6136;
+  --soil-d: #5e3f22;
+  --soil-dd: #3f2a17;
+  --loam: #3f2c1c;
+  --loam-hi: #5a3f28;
+  --loam-lo: #2e1f14;
+  --sun: #f9e27a;
+  --coin: #f8cf55;       /* palay gold */
+  --coin-hi: #fde89c;
+  --coin-pale: #fff6cf;
+  --coin-d: #e5952a;
+  --heart: #a3262a;      /* banner red */
+  --heart-hi: #d24a4a;
+  --heart-d: #6e1518;
+  --heart-tint: #f7dcd6;
+  --shirt: #4a9ad8;
+  --shirt-hi: #7dbbea;
+  --shirt-d: #3578b5;
+  --night: #1c1a1a;
+
+  /* colour roles: reach for these first */
+  --text: var(--ink);
+  --text-muted: var(--ink-2);
+  --text-faint: var(--ink-soft);
+  --text-on-dark: var(--paper);
+  --text-on-dark-muted: var(--straw);
+  --accent: var(--heart);          /* titles, key words */
+  --highlight: var(--coin);        /* gold on dark, markers */
+  --focus: var(--heart);
+  /* semantic colours: each one means ONE thing everywhere */
+  --danger: var(--heart);          /* violence, warnings, "kulang/huwad" */
+  --danger-tint: var(--heart-tint);
+  --success: var(--grass-dd);      /* good outcome, "tunay", next date, done */
+  --success-tint: var(--grass-tint);
+  --warning: var(--coin-d);        /* caution, needs attention */
+  --info: #2b62a0;                 /* links and help (5.8:1 on paper) */
+  --link: var(--info);
+  --ok: var(--success);
+  --shade: rgba(42, 26, 20, .25);
+  --shade-2: rgba(42, 26, 20, .35);
+  --scrim: rgba(28, 26, 26, .6);
+
+  /* spacing: 4px pixel grid */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+  --sp-9: 96px;
+
+  /* type */
+  --font-px: 'Press Start 2P', 'Courier New', monospace;
+  --font-body: 'VT323', 'Courier New', monospace;
+  /* pixel font: each step is a clear jump (≈1.33-1.5×) */
+  --t-micro: 8px;     /* tags, meta, badges */
+  --t-label: 10px;    /* eyebrows, nav, small buttons */
+  --t-h4: 12px;       /* card titles in tight grids */
+  --t-h3: 16px;       /* panel titles */
+  --t-h2: clamp(22px, 3.6vw, 36px);   /* section titles */
+  --t-h1: clamp(26px, 4.4vw, 44px);   /* page title */
+  --t-display: clamp(28px, 7vw, 72px);
+  /* body font (VT323 is small for its size) */
+  --t-sm: 20px;
+  --t-md: 24px;
+  --t-lg: 28px;
+  --t-xl: 34px;
+  --lh-px: 1.6;       /* pixel font needs room */
+  --lh-tight: 1.05;
+  --lh-body: 1.12;
+  --track-px: .06em;  /* letter-spacing for pixel caps */
+
+  /* pixel outlines & shadows */
+  --line: 4px;
+  --outline: 0 -4px 0 var(--ink), 0 4px 0 var(--ink), -4px 0 0 var(--ink), 4px 0 0 var(--ink);
+  --outline-3: 0 -3px 0 var(--ink), 0 3px 0 var(--ink), -3px 0 0 var(--ink), 3px 0 0 var(--ink);
+  --drop: 8px 8px 0 var(--shade);
+
+  /* motion: stepped, never smooth */
+  --step-fast: 80ms steps(2);
+  --step: 160ms steps(3);
+
+}
+
+/* 2. RESETS & BODY ----------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; }
+html { scrollbar-color: var(--soil) var(--paper-2); }
+body {
+  font-family: var(--font-body);
+  font-size: var(--t-md);
+  line-height: var(--lh-body);
+  color: var(--text);
+  background: var(--sky);
+  caret-color: var(--accent);
+  accent-color: var(--grass-d);
+  font-synthesis: none;            /* no fake bold/italic on pixel fonts */
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+  -webkit-tap-highlight-color: transparent;
+  text-rendering: optimizeSpeed;
+}
+a, button, summary, label, select, [role="button"] { cursor: pointer; }
+canvas { image-rendering: pixelated; image-rendering: crisp-edges; display: block; }
+img { image-rendering: pixelated; }
+
+::selection { background: var(--coin); color: var(--ink); }
+
+/* chunky pixel scrollbar */
+::-webkit-scrollbar { width: 16px; height: 16px; }
+::-webkit-scrollbar-track { background: var(--paper-2); box-shadow: inset 4px 0 0 var(--paper-3); }
+::-webkit-scrollbar-thumb { background: var(--soil); box-shadow: inset 0 0 0 4px var(--soil-d), inset 4px 4px 0 4px var(--soil); }
+::-webkit-scrollbar-thumb:hover { background: var(--coin-d); }
+::-webkit-scrollbar-corner { background: var(--paper-2); }
+
+/* one focus style everywhere (keyboard only) */
+:focus { outline: none; }
+:focus-visible { outline: var(--line) dashed var(--focus); outline-offset: var(--sp-1); }
+
+/* 3. TEXT DEFAULTS ----------------------------------------- */
+h1, h2, h3, h4 { text-wrap: balance; }
+p, li, dd { text-wrap: pretty; }
+/* VT323 has no bold, emphasise with colour + a gold marker instead of fake bold */
+strong, b {
+  font-weight: inherit;
+  color: var(--accent);
+  background: linear-gradient(transparent 64%, var(--coin-hi) 64%, var(--coin-hi) 92%, transparent 92%);
+  padding: 0 2px;
+}
+em { font-style: normal; color: var(--text-muted); }
+a {
+  color: inherit;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--coin-d);
+  transition: color var(--step-fast);
+}
+a:hover { color: var(--accent); text-decoration-color: currentColor; }
+kbd {
+  font-family: var(--font-px); font-size: var(--t-micro); line-height: 1;
+  background: var(--ink); color: var(--highlight); padding: var(--sp-1) 6px;
+  box-shadow: inset 0 -2px 0 var(--ink-2);
+}
+mark { background: var(--coin); color: var(--ink); padding: 0 2px; }
+hr { border: 0; height: var(--line); margin: var(--sp-5) 0; background: repeating-linear-gradient(90deg, var(--paper-3) 0 8px, transparent 8px 16px); }
+
+/* 4. PIXEL BOX (notched-corner border) ---------------------- */
+.px-box {
+  --bg: var(--paper);
+  --hi: var(--paper-hi);
+  --lo: var(--paper-2);
+  --bd: var(--ink);
+  background: var(--bg);
+  margin: var(--sp-1);
+  box-shadow:
+    0 -4px 0 var(--bd), 0 4px 0 var(--bd), -4px 0 0 var(--bd), 4px 0 0 var(--bd),
+    inset 4px 4px 0 var(--hi), inset -4px -4px 0 var(--lo),
+    var(--drop);
+}
+
+/* 5. PIXEL BUTTONS ------------------------------------------ */
+.px-btn {
+  --b: var(--coin);
+  --bh: var(--coin-hi);
+  --bl: var(--coin-d);
+  --fg: var(--ink);
+  --lift: 0px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  font-family: var(--font-px);
+  font-size: var(--t-h4);
+  line-height: 1.4;
+  letter-spacing: var(--track-px);
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  color: var(--fg);
+  background: var(--b);
+  border: 0;
+  padding: var(--sp-4) var(--sp-5);
+  margin: var(--sp-1);
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transform: translateY(var(--lift));
+  box-shadow:
+    0 -4px 0 var(--ink), 0 4px 0 var(--ink), -4px 0 0 var(--ink), 4px 0 0 var(--ink),
+    inset 4px 4px 0 var(--bh), inset -4px -4px 0 var(--bl),
+    0 calc(8px - var(--lift)) 0 var(--shade-2);
+  transition: transform var(--step-fast), box-shadow var(--step-fast), background-color var(--step-fast);
+}
+.px-btn:hover { --lift: -2px; color: var(--fg); background: var(--bh); }
+.px-btn:active {
+  transform: translateY(4px);
+  box-shadow:
+    0 -4px 0 var(--ink), 0 4px 0 var(--ink), -4px 0 0 var(--ink), 4px 0 0 var(--ink),
+    inset 4px 4px 0 var(--bl), inset -4px -4px 0 var(--bh);
+}
+.px-btn:focus-visible { outline: var(--line) dashed var(--focus); outline-offset: var(--sp-2); }
+.px-btn:disabled, .px-btn[aria-disabled="true"] {
+  --b: var(--paper-3); --bh: var(--paper-2); --bl: var(--straw); --fg: var(--text-faint);
+  cursor: not-allowed; transform: none;
+}
+.px-btn.green { --b: var(--grass); --bh: var(--grass-hi); --bl: var(--grass-d); }
+.px-btn.blue  { --b: var(--shirt); --bh: var(--shirt-hi); --bl: var(--shirt-d); --fg: var(--ink); }   /* ink: 5.5:1 */
+.px-btn.red   { --b: var(--heart); --bh: var(--heart-hi); --bl: var(--heart-d); --fg: var(--chalk); }
+.px-btn.paper { --b: var(--paper); --bh: var(--paper-hi); --bl: var(--paper-2); }
+.px-btn.big   { font-size: var(--t-h3); padding: var(--sp-5) var(--sp-6); gap: var(--sp-3); }
+.px-btn.small { font-size: var(--t-micro); padding: var(--sp-2) var(--sp-3); }
+
+/* 6. PIXEL HEART (pure CSS) ---------------------------------- */
+.px-heart {
+  display: inline-block;
+  width: 2px; height: 2px;
+  color: var(--heart);
+  margin: 0 14px 12px 0;   /* reserves the 14×12 drawn by the shadows */
+  box-shadow:
+    2px 0, 4px 0, 8px 0, 10px 0,
+    0 2px, 2px 2px, 4px 2px, 6px 2px, 8px 2px, 10px 2px, 12px 2px,
+    0 4px, 2px 4px, 4px 4px, 6px 4px, 8px 4px, 10px 4px, 12px 4px,
+    2px 6px, 4px 6px, 6px 6px, 8px 6px, 10px 6px,
+    4px 8px, 6px 8px, 8px 8px,
+    6px 10px;
+  vertical-align: middle;
+}
+.px-heart.light { color: var(--chalk); }
+
+/* 7. BLINK + REDUCED MOTION --------------------------------- */
+.blink { animation: blink 1s steps(1) 5; }   /* stops after 5 s (WCAG 2.2.2) */
+@keyframes blink { 50% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .blink { animation: none; }
+  .px-btn, .px-btn:hover { --lift: 0px; transition: none; }
+  * { scroll-behavior: auto !important; }
+}
+@media (min-width: 601px) { .px-btn { white-space: nowrap; } }   /* phones may wrap long labels */
+
+
+
+
+/* 8. PIXEL ICONS ------------------------------------------
+   <i class="ico ico-play" aria-hidden="true"></i>  takes the text colour.
+   Drawn on an 8x8 grid so they never fall back to colour emoji. */
+.ico {
+  display: inline-block; flex: none;
+  width: .75em; height: .75em; vertical-align: 0;   /* sized for VT323 body text */
+  background: currentColor;
+  -webkit-mask: var(--ico) center / contain no-repeat;
+          mask: var(--ico) center / contain no-repeat;
+}
+/* inside the pixel font (Press Start 2P) the icon matches the cap height */
+.px-btn .ico, .kicker .ico, .eyebrow .ico, h3 .ico, .nav-menu-title .ico, .marquee .ico,
+.warn-title .ico, .hint .ico, .rotate-hint .ico, .dialog-next .ico, .caret .ico { width: 1em; height: 1em; }
+:root {
+  --i-play: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h2v1h-2zM0 1h4v1h-4zM0 2h6v1h-6zM0 3h8v1h-8zM0 4h8v1h-8zM0 5h6v1h-6zM0 6h4v1h-4zM0 7h2v1h-2z'/%3E%3C/svg%3E");
+  --i-back: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M6 0h2v1h-2zM4 1h4v1h-4zM2 2h6v1h-6zM0 3h8v1h-8zM0 4h8v1h-8zM2 5h6v1h-6zM4 6h4v1h-4zM6 7h2v1h-2z'/%3E%3C/svg%3E");
+  --i-up: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M3 2h2v1h-2zM2 3h4v1h-4zM1 4h6v1h-6zM0 5h8v1h-8z'/%3E%3C/svg%3E");
+  --i-down: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 2h8v1h-8zM1 3h6v1h-6zM2 4h4v1h-4zM3 5h2v1h-2z'/%3E%3C/svg%3E");
+  --i-skip: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1h-1zM4 0h1v1h-1zM0 1h2v1h-2zM4 1h2v1h-2zM0 2h3v1h-3zM4 2h3v1h-3zM0 3h8v1h-8zM0 4h8v1h-8zM0 5h3v1h-3zM4 5h3v1h-3zM0 6h2v1h-2zM4 6h2v1h-2zM0 7h1v1h-1zM4 7h1v1h-1z'/%3E%3C/svg%3E");
+  --i-replay: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M2 0h3v1h-3zM6 0h1v1h-1zM1 1h1v1h-1zM5 1h2v1h-2zM0 2h1v1h-1zM4 2h3v1h-3zM0 3h1v1h-1zM0 4h1v1h-1zM7 4h1v1h-1zM0 5h1v1h-1zM7 5h1v1h-1zM1 6h1v1h-1zM6 6h1v1h-1zM2 7h4v1h-4z'/%3E%3C/svg%3E");
+  --i-ext: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M2 0h6v1h-6zM5 1h3v1h-3zM4 2h4v1h-4zM3 3h3v1h-3zM7 3h1v1h-1zM2 4h3v1h-3zM7 4h1v1h-1zM1 5h3v1h-3zM0 6h3v1h-3zM0 7h2v1h-2z'/%3E%3C/svg%3E");
+  --i-top: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M3 0h2v1h-2zM2 1h4v1h-4zM1 2h6v1h-6zM0 3h2v1h-2zM3 3h2v1h-2zM6 3h2v1h-2zM3 4h2v1h-2zM3 5h2v1h-2zM3 6h2v1h-2zM3 7h2v1h-2z'/%3E%3C/svg%3E");
+  --i-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M7 1h1v1h-1zM6 2h2v1h-2zM0 3h1v1h-1zM5 3h2v1h-2zM0 4h2v1h-2zM4 4h2v1h-2zM1 5h4v1h-4zM2 6h2v1h-2z'/%3E%3C/svg%3E");
+  --i-x: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h2v1h-2zM6 0h2v1h-2zM0 1h3v1h-3zM5 1h3v1h-3zM1 2h6v1h-6zM2 3h4v1h-4zM2 4h4v1h-4zM1 5h6v1h-6zM0 6h3v1h-3zM5 6h3v1h-3zM0 7h2v1h-2zM6 7h2v1h-2z'/%3E%3C/svg%3E");
+  --i-menu: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h8v1h-8zM0 1h8v1h-8zM0 3h8v1h-8zM0 4h8v1h-8zM0 6h8v1h-8zM0 7h8v1h-8z'/%3E%3C/svg%3E");
+  --i-heart: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M1 0h2v1h-2zM5 0h2v1h-2zM0 1h8v1h-8zM0 2h8v1h-8zM0 3h8v1h-8zM1 4h6v1h-6zM2 5h4v1h-4zM3 6h2v1h-2z'/%3E%3C/svg%3E");
+  --i-star: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M3 0h2v1h-2zM3 1h2v1h-2zM0 2h8v1h-8zM1 3h6v1h-6zM2 4h4v1h-4zM1 5h6v1h-6zM1 6h2v1h-2zM5 6h2v1h-2zM0 7h2v1h-2zM6 7h2v1h-2z'/%3E%3C/svg%3E");
+  --i-sound: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M4 0h2v1h-2zM3 1h3v1h-3zM0 2h6v1h-6zM7 2h1v1h-1zM0 3h6v1h-6zM7 3h1v1h-1zM0 4h6v1h-6zM7 4h1v1h-1zM0 5h6v1h-6zM7 5h1v1h-1zM3 6h3v1h-3zM4 7h2v1h-2z'/%3E%3C/svg%3E");
+  --i-mail: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h8v1h-8zM0 1h2v1h-2zM6 1h2v1h-2zM0 2h1v1h-1zM2 2h1v1h-1zM5 2h1v1h-1zM7 2h1v1h-1zM0 3h1v1h-1zM3 3h2v1h-2zM7 3h1v1h-1zM0 4h1v1h-1zM7 4h1v1h-1zM0 5h1v1h-1zM7 5h1v1h-1zM0 6h8v1h-8z'/%3E%3C/svg%3E");
+  --i-eye: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M2 1h4v1h-4zM1 2h2v1h-2zM5 2h2v1h-2zM0 3h2v1h-2zM3 3h2v1h-2zM6 3h2v1h-2zM0 4h2v1h-2zM3 4h2v1h-2zM6 4h2v1h-2zM1 5h2v1h-2zM5 5h2v1h-2zM2 6h4v1h-4z'/%3E%3C/svg%3E");
+  --i-warn: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M3 0h2v1h-2zM3 1h2v1h-2zM2 2h1v1h-1zM5 2h1v1h-1zM2 3h1v1h-1zM5 3h1v1h-1zM1 4h2v1h-2zM5 4h2v1h-2zM1 5h6v1h-6zM0 6h3v1h-3zM5 6h3v1h-3zM0 7h8v1h-8z'/%3E%3C/svg%3E");
+  --i-pause: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M1 0h2v8h-2zM5 0h2v8h-2z'/%3E%3C/svg%3E");
+  --i-tri: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 1h2v1h-2zM0 2h4v1h-4zM0 3h6v1h-6zM0 4h4v1h-4zM0 5h2v1h-2z'/%3E%3C/svg%3E");
+}
+.ico-play { --ico: var(--i-play); }
+.ico-back { --ico: var(--i-back); }
+.ico-up { --ico: var(--i-up); }
+.ico-down { --ico: var(--i-down); }
+.ico-skip { --ico: var(--i-skip); }
+.ico-replay { --ico: var(--i-replay); }
+.ico-ext { --ico: var(--i-ext); }
+.ico-top { --ico: var(--i-top); }
+.ico-check { --ico: var(--i-check); }
+.ico-x { --ico: var(--i-x); }
+.ico-menu { --ico: var(--i-menu); }
+.ico-heart { --ico: var(--i-heart); }
+.ico-star { --ico: var(--i-star); }
+.ico-sound { --ico: var(--i-sound); }
+.ico-mail { --ico: var(--i-mail); }
+.ico-eye { --ico: var(--i-eye); }
+.ico-warn { --ico: var(--i-warn); }
+.ico-tri { --ico: var(--i-tri); }
+.ico-pause { --ico: var(--i-pause); }
+/* same icons on ::before/::after: set --ico, then add .ico-pseudo rules */
+.px-btn .btn-ico { flex: none; width: 16px; height: 16px; }   /* pixel canvas icon inside a button */
+
+/* 9. REAL VIDEOS (warning screen + player, see real-videos.js) */
+body.rv-open { overflow: hidden; }
+.rv {
+  position: fixed; inset: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: center;
+  padding: var(--sp-4);
+  background: rgba(20, 14, 11, .92);
+}
+.rv-box {
+  width: min(760px, 100%); max-height: calc(100vh - var(--sp-6)); overflow: auto;
+  margin: 0; padding: var(--sp-6) var(--sp-5);
+  --bg: var(--ink); --hi: var(--ink-2); --lo: var(--loam-lo); --bd: var(--coin-d);
+  color: var(--text-on-dark);
+}
+.rv.is-graphic .rv-box { --bd: var(--danger); }
+.rv-warn, .rv-player { display: grid; gap: var(--sp-3); }
+.rv-warn[hidden], .rv-player[hidden] { display: none; }
+.rv-level {
+  justify-self: start; margin: 0;
+  font-family: var(--font-px); font-size: var(--t-label); letter-spacing: var(--track-px);
+  background: var(--coin); color: var(--ink); padding: var(--sp-2) var(--sp-3);
+}
+.rv.is-graphic .rv-level { background: var(--danger); color: var(--chalk); }
+.rv-title { margin: 0; font-family: var(--font-px); font-weight: normal; font-size: var(--t-h3); line-height: var(--lh-px); color: var(--highlight); }
+.rv-lead, .rv-note, .rv-help { margin: 0; }
+.rv-shows, .rv-facts { margin: 0; padding-left: var(--sp-5); display: grid; gap: var(--sp-1); }
+.rv-shows li::marker { color: var(--heart-hi); }
+.rv-facts { list-style: none; padding: var(--sp-3); background: var(--ink-3); color: var(--text-on-dark-muted); font-size: var(--t-sm); }
+.rv-note { color: var(--coin-hi); }
+.rv-ask { margin: 0; font-size: var(--t-lg); line-height: var(--lh-tight); }
+.rv-ask:empty { display: none; }
+.rv.is-ask .rv-w { display: none; }
+.rv.is-ask .rv-facts { background: none; padding: 0; }
+.rv-help { font-size: var(--t-sm); color: var(--text-on-dark-muted); }
+.rv strong { color: var(--highlight); background: none; padding: 0; }
+.rv-actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-2); }
+.rv-frame { background: #000; box-shadow: var(--outline); margin: var(--sp-1); }
+.rv-frame video { display: block; width: 100%; max-height: 62vh; background: #000; }
+.rv-credit { margin: 0; font-size: var(--t-sm); color: var(--text-on-dark-muted); }
+.rv-credit a { color: var(--highlight); }
+@media (max-width: 600px) {
+  .rv { padding: var(--sp-2); align-items: flex-start; }
+  .rv-box { padding: var(--sp-5) var(--sp-4); max-height: calc(100vh - var(--sp-4)); }
+  .rv-title { font-size: var(--t-h4); }
+  .rv-actions .px-btn { flex: 1 1 auto; }
+}
+/* a "real video" button placed in a card */
+.rv-btn { margin-top: var(--sp-3); }
+
+/* 10. SKELETON LOADERS: only where something really loads (video, photos) */
+.is-loading {
+  background: repeating-linear-gradient(90deg, var(--paper-2) 0 16px, var(--paper-3) 16px 32px);
+  background-size: 64px 100%;
+  animation: skeleton 1.2s steps(4) infinite;
+}
+@keyframes skeleton { to { background-position: 64px 0; } }
+.rv-frame { position: relative; }
+.rv-frame.is-loading { min-height: 240px; background: repeating-linear-gradient(90deg, var(--ink) 0 16px, var(--ink-3) 16px 32px); background-size: 64px 100%; }
+.rv-frame.is-loading video { opacity: 0; }
+.rv-loading { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); margin: 0; text-align: center; font-family: var(--font-px); font-size: var(--t-label); color: var(--highlight); }
+.rv-loading[hidden] { display: none; }
+.motion-paused .is-loading, .motion-paused .rv-frame.is-loading { animation: none; }
+@media (prefers-reduced-motion: reduce) { .is-loading, .rv-frame.is-loading { animation: none; } }
+
+/* 11. PRIVACY POP-UP (privacy.js) */
+body.pv-open { overflow: hidden; }
+.privacy-link {
+  font-family: var(--font-body); font-size: var(--t-sm); color: inherit;
+  background: none; border: 0; padding: 0; cursor: pointer;
+  text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; text-decoration-color: var(--coin-d);
+}
+.privacy-link:hover { color: var(--accent); }
+.privacy-dialog {
+  width: min(680px, calc(100vw - var(--sp-6))); max-height: min(80vh, 760px);
+  margin: auto;   /* centre it (the .px-box margin would pin it to the corner) */
+  padding: 0; border: 0; color: var(--text);
+  display: none; flex-direction: column;
+}
+.privacy-dialog[open] { display: flex; }
+.privacy-dialog::backdrop { background: var(--scrim); }
+.pv-head {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-5); border-bottom: 2px dashed var(--paper-3);
+}
+.pv-head h2 { margin: 0; font-family: var(--font-px); font-weight: normal; font-size: var(--t-h4); line-height: var(--lh-px); color: var(--accent); }
+.pv-close { margin: 0; }
+.pv-body { overflow-y: auto; padding: var(--sp-4) var(--sp-5) var(--sp-5); }
+.pv-lead { margin: 0; font-size: var(--t-md); }
+.pv-date { margin: var(--sp-2) 0 0; font-family: var(--font-px); font-size: var(--t-micro); color: var(--text-faint); }
+.pv-body h3 { margin: var(--sp-5) 0 var(--sp-1); font-family: var(--font-px); font-weight: normal; font-size: var(--t-label); line-height: var(--lh-px); color: var(--accent); }
+.pv-body p { margin: 0; }
+.pv-body code { font-family: var(--font-body); background: var(--paper-2); padding: 0 var(--sp-1); }
+@media (max-width: 600px) { .pv-head, .pv-body { padding-left: var(--sp-4); padding-right: var(--sp-4); } }

@@ -1,0 +1,17 @@
+# Dependencies & logs
+node_modules/
+npm-debug.log*
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Original screen recordings (about 1.3 GB). The site uses the trimmed,
+# compressed copies in assets/video/. Do not upload these when deploying.
+assets/RealVideos/*.mov
+
+# Build output (npm run build)
+dist/

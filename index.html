@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="fil">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Tunay na Reporma para sa Lupa</title>
+  <meta name="description" content="Isang maikling pixel na laro: samahan si Tatay Ramon at alamin kung bakit kailangan ang tunay na reporma sa lupa.">
+  <meta name="theme-color" content="#7cc35a">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <!-- Styles: base.css = shared colours, fonts, pixel boxes & buttons · game.css = this page only -->
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/game.css">
+</head>
+<!--
+  =====================================================================
+  INDEX.HTML: the intro game (first page visitors see)
+  Sections below: STAGE (canvas + HUD) · TITLE SCREEN · DIALOG
+                  · ENDING · TOUCH CONTROLS · scripts
+  To change the story, edit assets/js/game/game-data.js
+  =====================================================================
+-->
+<body class="game-page">
+
+  <!-- ============ STAGE: game canvas + top bar (HUD) ============ -->
+  <main id="stage">
+    <canvas id="game" width="288" height="160" aria-label="Laro: si Tatay Ramon, isang magsasaka, ay naglalakad sa bukid"></canvas>
+
+    <!-- HUD -->
+    <div id="hud" hidden>
+      <div class="hud-chip"><span class="px-heart"></span><span id="heartCount">0</span>/<span id="heartTotal">6</span></div>
+      <div class="hud-progress" aria-hidden="true"><div id="progressBar"></div></div>
+      <div class="hud-right">
+        <button id="muteBtn" class="px-btn small paper" aria-label="I-mute ang tunog"><i class="ico ico-sound" aria-hidden="true"></i> ON</button>
+        <button id="skipBtn" class="px-btn small">LAKTAWAN <i class="ico ico-skip" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============ TITLE SCREEN ============ -->
+  <section id="title" class="overlay title-screen" aria-labelledby="logo">
+    <div class="title-card px-box">
+      <p class="title-eyebrow"><i class="ico ico-star" aria-hidden="true"></i> ISANG MAIKLING LARO <i class="ico ico-star" aria-hidden="true"></i></p>
+      <h1 id="logo" class="logo">
+        <span class="l1">TUNAY NA REPORMA</span>
+        <span class="l2">PARA SA LUPA</span>
+      </h1>
+      <button id="startBtn" class="px-btn green big"><i class="ico ico-play" aria-hidden="true"></i> SIMULAN</button>
+      <p class="hint" id="titleHint">o pindutin ang ENTER</p>
+      <p class="title-links">
+        <a class="skip-link" href="learn.html">Laktawan ang laro, diretso sa Alamin Pa</a>
+        <button type="button" class="privacy-link" data-privacy>Privacy</button>
+      </p>
+      <p class="rotate-hint"><i class="ico ico-replay" aria-hidden="true"></i> I-landscape ang phone para mas malaki ang laro</p>
+    </div>
+  </section>
+
+  <!-- ============ DIALOG BOX (with optional story picture) ============ -->
+  <div id="dialog" class="dialog px-box" hidden role="dialog" aria-live="polite" aria-labelledby="dialogName">
+    <figure id="scenePanel" class="scene-panel" hidden>
+      <canvas id="sceneCanvas" width="160" height="72" role="img" aria-label=""></canvas>
+      <figcaption id="sceneCaption" class="scene-caption"></figcaption>
+    </figure>
+    <div class="portrait-wrap"><canvas id="portrait" width="20" height="16"></canvas></div>
+    <div class="dialog-body">
+      <div class="dialog-head">
+        <span id="dialogName" class="dialog-name">TATAY RAMON</span>
+        <span id="dialogTag" class="dialog-tag"></span>
+      </div>
+      <p id="dialogText" class="dialog-text"></p>
+      <!-- "?" explanations of hard words, filled from GLOSSARY in game-data.js -->
+      <div id="dialogGloss" class="gloss" hidden></div>
+    </div>
+    <span class="dialog-hint" aria-hidden="true">ENTER / CLICK</span>
+    <span class="dialog-next blink" aria-hidden="true"><i class="ico ico-down" aria-hidden="true"></i></span>
+  </div>
+
+  <!-- ============ ENDING: links to learn.html ============ -->
+  <section id="ending" class="overlay ending" hidden aria-labelledby="endTitle">
+    <div class="end-card px-box">
+      <p class="kicker dark">WAKAS NG INTRO</p>
+      <h2 id="endTitle" class="end-title">TUNAY NA REPORMA<br>PARA SA LUPA!</h2>
+      <p class="end-copy">
+        Ako ang nagtatanim, pero hindi akin ang lupa. Hindi lang ako.
+        Marami pang magsasaka ang may ganitong kuwento.
+        <strong>Lupa para sa nagbubungkal. Hustisya para sa magsasaka.</strong>
+      </p>
+      <p class="end-score"><span class="px-heart"></span> <span id="endHearts">0</span>/<span id="endTotal">6</span> na “Alam mo ba?” ang nakuha mo</p>
+      <div class="btn-row">
+        <a href="learn.html" class="px-btn green big" id="learnBtn">ALAMIN PA <i class="ico ico-play" aria-hidden="true"></i></a>
+        <button id="replayBtn" class="px-btn paper"><i class="ico ico-replay" aria-hidden="true"></i> MAGLARO MULI</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TOUCH CONTROLS (phones only) ============ -->
+  <div id="touch" hidden>
+    <div class="touch-group">
+      <button class="px-btn paper touch-btn" data-key="left" aria-label="Kaliwa"><i class="ico ico-back" aria-hidden="true"></i></button>
+      <button class="px-btn paper touch-btn" data-key="right" aria-label="Kanan"><i class="ico ico-play" aria-hidden="true"></i></button>
+    </div>
+    <button class="px-btn green touch-btn" data-key="jump" aria-label="Tumalon o ituloy"><i class="ico ico-up" aria-hidden="true"></i></button>
+  </div>
+
+  <!-- Scripts (order matters):
+       1. pixel-engine.js  shared pixel art (farmer, scenery, carabao…)
+       2. game-data.js     EDIT HERE: dialog, history posts, facts, farmers
+       3. story-scenes.js  pictures shown inside the dialog box
+       +  real-videos.js   totoong video, always behind a warning screen
+       4. game.js          game logic (movement, dialog, ending) -->
+  <script src="assets/js/shared/pixel-engine.js"></script>
+  <script src="assets/js/shared/real-videos.js"></script>
+  <script src="assets/js/shared/privacy.js"></script>
+  <script src="assets/js/game/game-data.js"></script>
+  <script src="assets/js/game/story-scenes.js"></script>
+  <script src="assets/js/game/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+/* =========================================================
+   GAME.CSS: styles for index.html (the intro game)
+   Tokens (--sp-*, --t-*, colour roles) live in base.css.
+   CONTENTS
+     1. Page & stage (canvas sizing is done in game.js)
+     2. HUD (hearts, progress, mute, skip)
+     3. Overlays: title screen
+     4. Dialog box
+     5. Ending screen
+     6. Touch controls (phones)
+     7. Story scene panel
+     8. Glossary ("?" explanations under the dialog)
+     9. Small screens
+   ========================================================= */
+/* 1. PAGE & STAGE ------------------------------------------- */
+html, body { height: 100%; }
+body.game-page {
+  overflow: hidden;
+  background: var(--night);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+}
+#stage {
+  position: relative;
+  width: 100vw; height: 100vh; height: 100dvh;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* 2. HUD ---------------------------------------------------- */
+#hud {
+  position: absolute;
+  inset: 0 0 auto 0;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  pointer-events: none;
+}
+#hud > * { pointer-events: auto; }
+.hud-chip {
+  font-family: var(--font-px);
+  font-size: var(--t-h3);
+  line-height: 1;
+  background: var(--paper);
+  padding: var(--sp-3) var(--sp-4);
+  margin: var(--sp-1);
+  box-shadow: var(--outline), inset -4px -4px 0 var(--paper-2), 0 8px 0 var(--shade-2);
+  display: flex; align-items: center;
+}
+.hud-chip .px-heart { margin: 0 var(--sp-5) var(--sp-3) 0; }
+#heartCount { color: var(--accent); }
+.hud-progress {
+  position: relative;
+  flex: 1;
+  max-width: 256px;
+  height: var(--sp-3);
+  background: var(--soil-d);
+  box-shadow: var(--outline), inset 0 4px 0 var(--soil-dd);
+  margin: var(--sp-1);
+}
+#progressBar {
+  height: 100%;
+  width: 0;
+  background: repeating-linear-gradient(90deg, var(--grass) 0 8px, var(--grass-hi) 8px 12px);
+  box-shadow: inset 0 -4px 0 var(--grass-d);
+  transition: width var(--step);
+}
+.hud-right { margin-left: auto; display: flex; gap: var(--sp-3); }
+#hud .px-btn { font-size: var(--t-h4); padding: var(--sp-4); }
+
+/* 3. OVERLAYS + TITLE SCREEN -------------------------------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-4);
+  z-index: 20;
+}
+.title-screen { background: linear-gradient(180deg, transparent 40%, var(--shade) 100%); }
+/* everything on the title screen lives in ONE card, like the Alamin Pa hero */
+.title-card {
+  width: min(640px, 100%);
+  max-height: calc(100vh - var(--sp-6));
+  overflow: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-6) var(--sp-6) var(--sp-5);
+  transform: translateY(-4vh);
+}
+.title-eyebrow {
+  margin: 0; padding-bottom: var(--sp-2);
+  font-family: var(--font-px); font-size: var(--t-micro); letter-spacing: .12em;
+  color: var(--ok); border-bottom: 2px dashed var(--grass-hi);
+}
+.kicker {
+  font-family: var(--font-px);
+  font-size: var(--t-h4);
+  letter-spacing: .12em;
+  color: var(--ink);
+  background: var(--coin);
+  padding: var(--sp-2) var(--sp-3);
+  margin: 0;
+  box-shadow: var(--outline), inset 0 -4px 0 var(--coin-d);
+}
+.kicker.dark { background: var(--ink); color: var(--highlight); box-shadow: none; display: inline-block; font-size: var(--t-label); }   /* ending card */
+.logo { margin: 0; font-family: var(--font-px); font-weight: normal; line-height: 1.25; }
+.logo span { display: block; }
+.logo .l1 { font-size: clamp(16px, 2.6vw, 30px); color: var(--text); text-shadow: 3px 3px 0 var(--coin); }
+.logo .l2 { font-size: clamp(20px, 3.8vw, 44px); color: var(--accent); text-shadow: 3px 3px 0 var(--coin-hi); margin-top: var(--sp-2); }
+.hint { margin: calc(-1 * var(--sp-2)) 0 0; font-family: var(--font-body); font-size: var(--t-sm); color: var(--text-faint); }
+.title-links {
+  margin: 0; padding-top: var(--sp-3); width: 100%;
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: var(--sp-2) var(--sp-5);
+  border-top: 2px dashed var(--paper-3);
+}
+.skip-link { font-family: var(--font-body); font-size: var(--t-md); color: var(--link); }
+.skip-link:hover { color: var(--accent); }
+.title-links .privacy-link { color: var(--text-muted); }
+.rotate-hint { display: none; margin: 0; font-family: var(--font-px); font-size: var(--t-micro); color: var(--text-muted); line-height: var(--lh-px); }
+@media (orientation: portrait) and (max-width: 600px) { .rotate-hint { display: block; } }
+.title-screen .px-btn.big { font-size: clamp(16px, 2.4vw, 22px); padding: var(--sp-4) var(--sp-7); }
+@media (max-height: 560px) {
+  .title-card { gap: var(--sp-2); padding: var(--sp-4); transform: none; }
+  .logo .l2 { font-size: clamp(20px, 4vw, 36px); }
+}
+@media (max-width: 600px) { .title-card { padding: var(--sp-5) var(--sp-4); } }
+
+/* 4. DIALOG BOX --------------------------------------------- */
+.dialog {
+  position: fixed;
+  left: 50%;
+  top: max(88px, env(safe-area-inset-top));
+  transform: translateX(-50%);
+  width: min(920px, calc(100vw - var(--sp-7)));
+  max-height: calc(100vh - 104px);
+  overflow-y: auto;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  align-items: flex-start;
+  padding: var(--sp-5) var(--sp-5) var(--sp-7);   /* bottom room for the ENTER hint */
+  z-index: 30;
+  cursor: pointer;
+  user-select: none;
+}
+.portrait-wrap {
+  flex: none;
+  width: 112px; height: 112px;
+  background: var(--sky-2);
+  box-shadow: var(--outline), inset 0 -24px 0 var(--grass-hi), inset 0 -28px 0 var(--grass-d);
+  margin: var(--sp-1);
+  display: flex; align-items: center; justify-content: center;
+}
+.portrait-wrap canvas { width: 100px; height: 80px; }
+.dialog-body { flex: 1; min-width: 0; }
+.dialog-head {
+  display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-3); align-items: center;
+  margin-bottom: var(--sp-2); padding-bottom: var(--sp-2);
+  border-bottom: 2px dashed var(--paper-3);
+}
+.dialog-name { font-family: var(--font-px); font-size: var(--t-h3); letter-spacing: var(--track-px); color: var(--accent); }
+.dialog-tag {
+  font-family: var(--font-px);
+  font-size: var(--t-label);
+  background: var(--ink);
+  color: var(--highlight);
+  padding: var(--sp-1) var(--sp-2);
+}
+.dialog-tag:empty { display: none; }
+.dialog-text { margin: 0; font-size: var(--t-xl); line-height: var(--lh-tight); min-height: 3.45em; }
+.dialog-next { position: absolute; right: var(--sp-4); bottom: var(--sp-3); font-size: var(--t-md); line-height: 1; color: var(--accent); }
+.dialog-hint { position: absolute; right: var(--sp-7); bottom: var(--sp-4); font-family: var(--font-px); font-size: var(--t-micro); letter-spacing: var(--track-px); color: var(--text-faint); }
+
+/* 5. ENDING SCREEN ------------------------------------------ */
+.ending { background: rgba(28, 26, 26, .55); }
+.end-card {
+  width: min(760px, 100%);
+  max-height: calc(100vh - var(--sp-6));
+  overflow: auto;
+  text-align: center;
+  padding: var(--sp-6) var(--sp-5);
+  animation: pop 320ms steps(4) both;
+}
+@keyframes pop { from { transform: scale(.6); } to { transform: none; } }
+.end-title {
+  font-family: var(--font-px);
+  font-weight: normal;
+  font-size: var(--t-h2);
+  line-height: 1.35;
+  color: var(--accent);
+  text-shadow: 3px 3px 0 var(--coin);
+  margin: var(--sp-5) 0 var(--sp-4);
+}
+.end-copy { margin: 0 auto var(--sp-5); max-width: 46ch; font-size: var(--t-lg); line-height: var(--lh-tight); color: var(--text-muted); }
+.end-copy strong { display: block; margin-top: var(--sp-3); color: var(--ok); background: none; padding: 0; }
+.end-score {
+  display: inline-block;
+  font-family: var(--font-px); font-size: var(--t-h4); line-height: var(--lh-px);
+  margin: 0 0 var(--sp-6); padding: var(--sp-2) var(--sp-3);
+  background: var(--paper-2); box-shadow: inset 0 -4px 0 var(--paper-3);
+}
+.end-score .px-heart { margin: 0 var(--sp-5) var(--sp-3) 0; }
+#endHearts { color: var(--accent); }
+.ending .px-btn { font-size: var(--t-h3); padding: var(--sp-5) var(--sp-5); }
+.ending .px-btn.big { font-size: clamp(16px, 2.2vw, 24px); padding: var(--sp-5) var(--sp-6); }
+.btn-row { display: flex; flex-wrap: wrap; gap: var(--sp-3); justify-content: center; }
+
+/* 6. TOUCH CONTROLS ----------------------------------------- */
+#touch {
+  position: fixed;
+  left: 0; right: 0;
+  bottom: max(var(--sp-4), env(safe-area-inset-bottom));
+  display: flex;
+  justify-content: space-between;
+  padding: 0 var(--sp-5);
+  z-index: 25;
+  pointer-events: none;
+}
+#touch > * { pointer-events: auto; }
+.touch-group { display: flex; gap: var(--sp-4); }
+.touch-btn { width: 84px; height: 84px; font-size: var(--t-lg); padding: 0; touch-action: none; }
+
+/* 7. STORY SCENE PANEL (inside the dialog) ------------------- */
+.scene-panel {
+  position: relative;
+  flex: 1 0 100%;
+  margin: 0 0 var(--sp-2);
+  background: var(--ink);
+  box-shadow: var(--outline);
+}
+.scene-panel canvas {
+  width: 100%;
+  height: min(30vh, 260px);
+  object-fit: contain;
+  background: var(--ink);
+}
+.scene-caption {
+  position: absolute;
+  left: var(--sp-2); top: var(--sp-2);
+  font-family: var(--font-px);
+  font-size: var(--t-label);
+  letter-spacing: var(--track-px);
+  color: var(--highlight);
+  background: rgba(42, 26, 20, .85);
+  padding: var(--sp-2);
+  box-shadow: inset 0 -2px 0 var(--coin-d);
+}
+
+/* 8. GLOSSARY ("?" explanations under the dialog text) ------ */
+.gloss { display: grid; gap: var(--sp-2); margin-top: var(--sp-3); padding-top: var(--sp-3); border-top: 2px dashed var(--paper-3); }
+.gloss details { background: var(--paper-2); }
+.gloss summary {
+  list-style: none; padding: var(--sp-2) var(--sp-3);
+  font-family: var(--font-px); font-size: var(--t-label); line-height: var(--lh-px); color: var(--link);
+  display: flex; align-items: center; gap: var(--sp-3);
+  transition: background-color var(--step-fast);
+}
+.gloss summary::-webkit-details-marker { display: none; }
+.gloss summary::after { content: ''; display: inline-block; width: 8px; height: 8px; background: currentColor; -webkit-mask: var(--i-down) center / contain no-repeat; mask: var(--i-down) center / contain no-repeat; margin-left: auto; color: var(--accent); }
+.gloss details[open] summary::after { -webkit-mask-image: var(--i-up); mask-image: var(--i-up); }
+.gloss summary:hover, .gloss summary:focus-visible { background: var(--coin-hi); outline: none; }
+.gloss-q {
+  flex: none; display: inline-grid; place-items: center; width: 24px; height: 24px;
+  background: var(--shirt); color: var(--chalk); font-size: var(--t-label);
+  box-shadow: 0 0 0 2px var(--ink), inset -2px -2px 0 var(--shirt-d);
+}
+.gloss details p { margin: 0; padding: var(--sp-1) var(--sp-3) var(--sp-3) 44px; font-size: var(--t-md); line-height: var(--lh-tight); color: var(--text); }
+
+/* 9. SMALL SCREENS ------------------------------------------ */
+@media (max-height: 560px) {
+  .dialog { top: var(--sp-8); padding: var(--sp-3) var(--sp-4) var(--sp-6); }
+  .scene-panel canvas { height: 34vh; }
+}
+@media (max-width: 600px) {
+  #hud { padding: var(--sp-2); gap: var(--sp-2); }
+  .hud-chip { font-size: var(--t-h4); padding: var(--sp-2) var(--sp-3); }
+  #hud .px-btn { font-size: var(--t-label); padding: var(--sp-3); }
+  .hud-progress, .dialog-hint { display: none; }
+  .dialog { width: calc(100vw - var(--sp-5)); padding: var(--sp-3) var(--sp-3) var(--sp-6); gap: var(--sp-3); }
+  .portrait-wrap { width: 64px; height: 64px; box-shadow: var(--outline), inset 0 -12px 0 var(--grass-hi); }
+  .portrait-wrap canvas { width: 60px; height: 48px; }
+  .dialog-name { font-size: var(--t-h4); }
+  .dialog-tag { font-size: var(--t-micro); }
+  .dialog-text { font-size: var(--t-lg); }
+  .touch-btn { width: 76px; height: 76px; }
+  .scene-caption { font-size: var(--t-micro); }
+  .gloss summary { font-size: var(--t-micro); }
+  .gloss details p { padding-left: var(--sp-3); font-size: var(--t-sm); }
+}

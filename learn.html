@@ -1,0 +1,1858 @@
+<!doctype html>
+<html lang="fil">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Alamin Pa · Tunay na Reporma para sa Lupa</title>
+    <meta
+      name="description"
+      content="Bakit kailangan ang tunay na reporma sa lupa? Ang problema, ang kasaysayan, ang mga panawagan, at kung paano ka makakatulong."
+    />
+    <meta name="theme-color" content="#7cc35a" />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <!-- Styles: base.css = shared colours, fonts, pixel boxes & buttons · learn.css = this page only -->
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/learn.css" />
+  </head>
+  <!--
+  =====================================================================
+  LEARN.HTML: the advocacy site ("Alamin Pa")
+  Page order (each block starts with a big comment banner):
+    NAV · SEARCH · HERO · MARQUEE
+    1 PROBLEMA · 2 KASAYSAYAN · 3 TUNAY · 4 PANAWAGAN · 5 FAQ
+    6 KUMILOS (donate, join, finder)
+    7 TUNGKOL SA AMIN + TEAM · 8 MAPAGKUKUNAN · 9 MGA PETSA · FOOTER
+  Text & links that live in JS: assets/js/learn/learn-data.js
+  =====================================================================
+-->
+  <body class="learn-page">
+    <a class="skip-to" href="#main">Lumaktaw sa nilalaman</a>
+
+    <!-- ============ NAV ============ -->
+    <header class="nav">
+      <div class="wrap nav-inner">
+        <a
+          href="#top"
+          class="brand"
+          aria-label="Tunay na Reporma para sa Lupa, itaas ng pahina"
+        >
+          <canvas
+            class="brand-coin"
+            data-icon="coin"
+            width="12"
+            height="12"
+            aria-hidden="true"
+          ></canvas>
+          <span class="brand-text"
+            ><span>TUNAY NA REPORMA</span><small>PARA SA LUPA</small></span
+          >
+        </a>
+        <nav
+          id="navLinks"
+          class="nav-links"
+          aria-label="Pangunahing nabigasyon"
+        >
+          <p class="nav-menu-title">
+            <i class="ico ico-star" aria-hidden="true"></i> STAGE SELECT
+            <i class="ico ico-star" aria-hidden="true"></i>
+          </p>
+          <div class="nav-group" data-group="alamin">
+            <button
+              class="nav-group-btn"
+              type="button"
+              aria-expanded="false"
+              aria-controls="grp-alamin"
+            >
+              ALAMIN
+              <span class="caret" aria-hidden="true"
+                ><i class="ico ico-down" aria-hidden="true"></i
+              ></span>
+            </button>
+            <div class="nav-drop" id="grp-alamin">
+              <p class="nav-drop-title">ALAMIN</p>
+              <a href="#problema" class="nl" data-target="problema">
+                <span class="nl-icon"
+                  ><canvas
+                    data-icon="sprout"
+                    width="12"
+                    height="12"
+                    aria-hidden="true"
+                  ></canvas
+                  ><span class="nl-num">1</span></span
+                >
+                <span class="nl-text"
+                  ><span class="nl-kicker">STAGE 1</span
+                  ><span class="nl-title">PROBLEMA</span
+                  ><span class="nl-desc"
+                    >Bakit walang sariling lupa ang magsasaka</span
+                  ></span
+                >
+              </a>
+              <a href="#kasaysayan" class="nl" data-target="kasaysayan">
+                <span class="nl-icon"
+                  ><canvas
+                    data-icon="scroll"
+                    width="12"
+                    height="12"
+                    aria-hidden="true"
+                  ></canvas
+                  ><span class="nl-num">2</span></span
+                >
+                <span class="nl-text"
+                  ><span class="nl-kicker">STAGE 2</span
+                  ><span class="nl-title">KASAYSAYAN</span
+                  ><span class="nl-desc"
+                    >Mula enkomyenda hanggang ngayon</span
+                  ></span
+                >
+              </a>
+              <a href="#tunay" class="nl" data-target="tunay">
+                <span class="nl-icon"
+                  ><canvas
+                    data-icon="check"
+                    width="12"
+                    height="12"
+                    aria-hidden="true"
+                  ></canvas
+                  ><span class="nl-num">3</span></span
+                >
+                <span class="nl-text"
+                  ><span class="nl-kicker">STAGE 3</span
+                  ><span class="nl-title">TUNAY?</span
+                  ><span class="nl-desc"
+                    >Kulang vs. tunay na reporma</span
+                  ></span
+                >
+              </a>
+              <a href="#panawagan" class="nl" data-target="panawagan">
+                <span class="nl-icon"
+                  ><canvas
+                    data-icon="megaphone"
+                    width="12"
+                    height="12"
+                    aria-hidden="true"
+                  ></canvas
+                  ><span class="nl-num">4</span></span
+                >
+                <span class="nl-text"
+                  ><span class="nl-kicker">STAGE 4</span
+                  ><span class="nl-title">PANAWAGAN</span
+                  ><span class="nl-desc"
+                    >Ang hinihingi ng mga magsasaka</span
+                  ></span
+                >
+              </a>
+              <a href="#faq" class="nl" data-target="faq">
+                <span class="nl-icon"
+                  ><canvas
+                    data-icon="question"
+                    width="12"
+                    height="12"
+                    aria-hidden="true"
+                  ></canvas
+                  ><span class="nl-num">5</span></span
+                >
+                <span class="nl-text"
+                  ><span class="nl-kicker">STAGE 5</span
+                  ><span class="nl-title">MGA TANONG</span
+                  ><span class="nl-desc">Mga madalas itanong</span></span
+                >
+              </a>
+            </div>
+          </div>
+          <div class="nav-group" data-group="kumilos">
+            <button
+              class="nav-group-btn"
+              type="button"
+              aria-expanded="false"
+              aria-controls="grp-kumilos"
+            >
+              KUMILOS
+              <span class="caret" aria-hidden="true"
+                ><i class="ico ico-down" aria-hidden="true"></i
+              ></span>
+            </button>
+            <div class="nav-drop" id="grp-kumilos">
+              <p class="nav-drop-title">KUMILOS</p>
+              <a href="#kumilos" class="nl" data-target="kumilos">
+                <span class="nl-icon"
+                  ><canvas
+                    data-icon="heart"
+                    width="12"
+                    height="12"
+                    aria-hidden="true"
+                  ></canvas
+                  ><span class="nl-num">6</span></span
+                >
+                <span class="nl-text"
+                  ><span class="nl-kicker">STAGE 6</span
+                  ><span class="nl-title">PAANO TUMULONG</span
+                  ><span class="nl-desc"
+                    >Apat na paraan para tumulong</span
+                  ></span
+                >
+              </a>
+              <a href="#donate" class="nl" data-target="donate">
+                <span class="nl-icon"
+                  ><canvas
+                    data-icon="coin"
+                    width="12"
+                    height="12"
+                    aria-hidden="true"
+                  ></canvas
+                ></span>
+                <span class="nl-text"
+                  ><span class="nl-kicker">SUPORTA</span
+                  ><span class="nl-title">MAG-DONATE</span
+                  ><span class="nl-desc"
+                    >Mga NGO na tumutulong sa magsasaka</span
+                  ></span
+                >
+              </a>
+              <a href="#hanapin" class="nl" data-target="hanapin">
+                <span class="nl-icon"
+                  ><canvas
+                    data-icon="people"
+                    width="12"
+                    height="12"
+                    aria-hidden="true"
+                  ></canvas
+                ></span>
+                <span class="nl-text"
+                  ><span class="nl-kicker">SUMALI</span
+                  ><span class="nl-title">SUMALI SA ORG</span
+                  ><span class="nl-desc"
+                    >Hanapin ang organisasyong para sa iyo</span
+                  ></span
+                >
+              </a>
+              <a href="#petsa" class="nl" data-target="petsa">
+                <span class="nl-icon"
+                  ><canvas
+                    data-icon="calendar"
+                    width="12"
+                    height="12"
+                    aria-hidden="true"
+                  ></canvas
+                ></span>
+                <span class="nl-text"
+                  ><span class="nl-kicker">KALENDARYO</span
+                  ><span class="nl-title">MGA PETSA</span
+                  ><span class="nl-desc"
+                    >Mga araw na ginugunita ng magsasaka</span
+                  ></span
+                >
+              </a>
+            </div>
+          </div>
+          <div class="nav-group" data-group="tungkol">
+            <button
+              class="nav-group-btn"
+              type="button"
+              aria-expanded="false"
+              aria-controls="grp-tungkol"
+            >
+              TUNGKOL
+              <span class="caret" aria-hidden="true"
+                ><i class="ico ico-down" aria-hidden="true"></i
+              ></span>
+            </button>
+            <div class="nav-drop" id="grp-tungkol">
+              <p class="nav-drop-title">TUNGKOL</p>
+              <a href="#tungkol" class="nl" data-target="tungkol">
+                <span class="nl-icon"
+                  ><canvas
+                    data-icon="people"
+                    width="12"
+                    height="12"
+                    aria-hidden="true"
+                  ></canvas
+                ></span>
+                <span class="nl-text"
+                  ><span class="nl-kicker">TUNGKOL</span
+                  ><span class="nl-title">SINO KAMI?</span
+                  ><span class="nl-desc"
+                    >Mga estudyante, hindi organisasyon</span
+                  ></span
+                >
+              </a>
+              <a href="#team" class="nl" data-target="team">
+                <span class="nl-icon"
+                  ><canvas
+                    data-icon="farmer"
+                    width="12"
+                    height="12"
+                    aria-hidden="true"
+                  ></canvas
+                ></span>
+                <span class="nl-text"
+                  ><span class="nl-kicker">TEAM</span
+                  ><span class="nl-title">ANG TEAM</span
+                  ><span class="nl-desc">Ang mga gumawa ng proyekto</span></span
+                >
+              </a>
+              <a href="#mapagkukunan" class="nl" data-target="mapagkukunan">
+                <span class="nl-icon"
+                  ><canvas
+                    data-icon="book"
+                    width="12"
+                    height="12"
+                    aria-hidden="true"
+                  ></canvas
+                ></span>
+                <span class="nl-text"
+                  ><span class="nl-kicker">RESOURCES</span
+                  ><span class="nl-title">MAPAGKUKUNAN</span
+                  ><span class="nl-desc"
+                    >Mga batas, pananaliksik, liham sa gobyerno</span
+                  ></span
+                >
+              </a>
+            </div>
+          </div>
+          <a href="index.html" class="px-btn small green nav-play"
+            ><i class="ico ico-play" aria-hidden="true"></i> LARO</a
+          >
+        </nav>
+        <button
+          class="nav-search px-btn small paper"
+          type="button"
+          aria-label="Maghanap sa site (pindutin ang /)"
+        >
+          <canvas
+            data-icon="search"
+            width="12"
+            height="12"
+            aria-hidden="true"
+          ></canvas
+          ><span class="ns-label">HANAP</span>
+        </button>
+        <button
+          class="nav-toggle px-btn small paper"
+          aria-expanded="false"
+          aria-controls="navLinks"
+        >
+          <i class="ico ico-menu" aria-hidden="true"></i> MENU
+        </button>
+      </div>
+      <div class="nav-progress" aria-hidden="true">
+        <div id="navProgress"></div>
+      </div>
+    </header>
+
+    <!-- ============ SEARCH ============ -->
+    <div
+      id="searchOverlay"
+      class="search-overlay"
+      hidden
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="searchTitle"
+    >
+      <div class="search-box px-box">
+        <div class="search-head">
+          <label id="searchTitle" for="searchInput">MAGHANAP SA SITE</label>
+          <button
+            id="searchClose"
+            class="px-btn small paper"
+            type="button"
+            aria-label="Isara"
+          >
+            <i class="ico ico-x" aria-hidden="true"></i>
+          </button>
+        </div>
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Hal. CARP, Luisita, palay, donate..."
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <p id="searchHint" class="search-hint">
+          Pindutin ang <kbd>/</kbd> para maghanap kahit saan.
+          <kbd>Esc</kbd> para isara.
+        </p>
+        <ol id="searchResults" class="search-results"></ol>
+      </div>
+    </div>
+
+    <!-- ============ HERO ============ -->
+    <main id="main" tabindex="-1">
+    <section class="hero" id="top">
+      <canvas id="heroCanvas" aria-hidden="true"></canvas>
+      <div class="wrap hero-inner">
+        <div class="hero-card px-box">
+          <p class="eyebrow">
+            <i class="ico ico-star" aria-hidden="true"></i> ADBOKASIYA PARA SA
+            MAGSASAKA <i class="ico ico-star" aria-hidden="true"></i>
+          </p>
+          <h1 class="hero-title">TUNAY NA REPORMA <span>PARA SA LUPA</span></h1>
+          <p class="hero-lead">
+            May batas na para sa reporma sa lupa mula pa 1988. Pero marami pa
+            ring magsasaka ang umuupa at nangungutang sa lupang sila mismo ang
+            nagbubungkal.
+          </p>
+          <div class="btn-row">
+            <a href="#problema" class="px-btn green"
+              >BAKIT? <i class="ico ico-down" aria-hidden="true"></i
+            ></a>
+            <a href="index.html" class="px-btn paper"
+              ><i class="ico ico-replay" aria-hidden="true"></i> BALIKAN ANG
+              LARO</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee-wrap">
+      <!-- click (or Enter/Space) on the moving banner to stop/start all motion (WCAG 2.2.2) -->
+      <div class="marquee" id="motionBtn" role="button" tabindex="0" aria-pressed="false"
+        aria-label="Ihinto ang galaw ng mga animasyon" title="Pindutin para ihinto ang galaw">
+        <div class="marquee-track" aria-hidden="true">
+          <span>LUPA PARA SA NAGBUBUNGKAL</span
+          ><span><i class="ico ico-heart" aria-hidden="true"></i></span>
+          <span>HUSTISYA PARA SA MAGSASAKA</span
+          ><span><i class="ico ico-heart" aria-hidden="true"></i></span>
+          <span>LIBRENG PAMAMAHAGI NG LUPA</span
+          ><span><i class="ico ico-heart" aria-hidden="true"></i></span>
+          <span>ITIGIL ANG LAND CONVERSION</span
+          ><span><i class="ico ico-heart" aria-hidden="true"></i></span>
+          <span>REJECT PAX SILICA</span
+          ><span><i class="ico ico-heart" aria-hidden="true"></i></span>
+          <span>LUPA PARA SA NAGBUBUNGKAL</span
+          ><span><i class="ico ico-heart" aria-hidden="true"></i></span>
+          <span>HUSTISYA PARA SA MAGSASAKA</span
+          ><span><i class="ico ico-heart" aria-hidden="true"></i></span>
+          <span>LIBRENG PAMAMAHAGI NG LUPA</span
+          ><span><i class="ico ico-heart" aria-hidden="true"></i></span>
+          <span>ITIGIL ANG LAND CONVERSION</span
+          ><span><i class="ico ico-heart" aria-hidden="true"></i></span>
+          <span>REJECT PAX SILICA</span
+          ><span><i class="ico ico-heart" aria-hidden="true"></i></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 1. PROBLEMA ============ -->
+    <section class="sec sec-grass" id="problema">
+      <canvas class="decor" data-decor="field" aria-hidden="true"></canvas>
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="stage-tag">STAGE 1</span>
+          <h2 class="sec-title">ANO ANG PROBLEMA?</h2>
+          <p class="sec-lead">
+            Mahigit tatlong dekada na mula nang ipasa ang CARP, pero ang tanong
+            ng magsasaka ay pareho pa rin:
+            <strong>kanino ang lupa?</strong>
+          </p>
+        </header>
+        <div class="cards">
+          <article class="card px-box">
+            <canvas
+              class="icon"
+              data-icon="sprout"
+              width="12"
+              height="12"
+              aria-hidden="true"
+            ></canvas>
+            <h3>WALANG SARILING LUPA</h3>
+            <p>
+              Maraming magsasaka ang nakikisaka, umuupa, o arawang manggagawa sa
+              lupang hindi kanila. Malaking bahagi ng ani ay napupunta sa upa at
+              utang.
+            </p>
+          </article>
+          <article class="card px-box">
+            <canvas
+              class="icon"
+              data-icon="scroll"
+              width="12"
+              height="12"
+              aria-hidden="true"
+            ></canvas>
+            <h3>BUTAS SA BATAS</h3>
+            <p>
+              Ang CARP ay may mga butas (stock distribution option, mga
+              exemption, at mga “boluntaryong” kasunduan) na ginamit para hindi
+              maipamahagi ang malalawak na asyenda.
+            </p>
+          </article>
+          <article class="card px-box">
+            <canvas
+              class="icon"
+              data-icon="building"
+              width="12"
+              height="12"
+              aria-hidden="true"
+            ></canvas>
+            <h3>PINAPAALIS SA SAKAHAN</h3>
+            <p>
+              Ang mga sakahan ay ginagawang subdivision at resort, pero pati na
+              rin minahan, tapunan ng basura, at ngayon, data center. Kapag nawala
+              ang lupa, nawawala rin ang hanapbuhay, pati ang pagkain.
+            </p>
+          </article>
+          <article class="card px-box">
+            <canvas
+              class="icon"
+              data-icon="heart"
+              width="12"
+              height="12"
+              aria-hidden="true"
+            ></canvas>
+            <h3>KARAHASAN</h3>
+            <p>
+              Ang mga magsasakang lumalaban para sa lupa ay hinaharas,
+              kinakasuhan, at pinapaslang. Mendiola 1987. Luisita 2004. Ang
+              sigaw nila: hustisya.
+            </p>
+          </article>
+        </div>
+
+        <div class="exploit px-box">
+          <h3>LIMANG ANYO NG PAGSASAMANTALA SA MAGSASAKA</h3>
+          <p class="exploit-lead">
+            Kapag ang lupa ay hawak ng iilan, ganito naghihirap ang nagbubungkal
+            nito:
+          </p>
+          <ol class="exploit-list">
+            <li>
+              <span class="x-num">1</span
+              ><strong>Mataas na upa sa lupa</strong>: malaking bahagi ng ani
+              ang ibinibigay sa may-ari.
+            </li>
+            <li>
+              <span class="x-num">2</span><strong>Usura</strong>: pautang na
+              napakataas ang interes, kaya baon sa utang taon-taon.
+            </li>
+            <li>
+              <span class="x-num">3</span><strong>Napakababang sahod</strong>:
+              lalo na sa mga manggagawang-bukid sa asyenda.
+            </li>
+            <li>
+              <span class="x-num">4</span><strong>Pang-aalila</strong>:
+              sapilitang libreng trabaho at “tributo” sa may-ari.
+            </li>
+            <li>
+              <span class="x-num">5</span><strong>Pag-agaw ng lupa</strong>:
+              pagpapalayas sa magsasaka sa lupang matagal na nilang sinasaka.
+            </li>
+          </ol>
+          <p class="exploit-foot">
+            Dahil dito, maraming taga-nayon ang napipilitang lumuwas sa lungsod
+            para maghanapbuhay, at nananatiling atrasado ang pagsasaka sa bansa.
+          </p>
+        </div>
+
+        <!-- PINAPAALIS SA SAKAHAN: real examples, each with its sources -->
+        <div class="landuse px-box" id="pinapaalis">
+          <h3>PINAPAALIS SA SAKAHAN: HINDI LANG SUBDIVISION</h3>
+          <p class="landuse-lead">
+            Kapag ginawang ibang gamit ang sakahan, napapaalis ang mga
+            nagbubungkal nito. Narito ang tatlong totoong halimbawa.
+          </p>
+          <ul class="landuse-list">
+            <li>
+              <p class="lu-kind">MINAHAN</p>
+              <p class="lu-place">Didipio, Kasibu, Nueva Vizcaya</p>
+              <p>
+                Giniba ang mga bahay sa Didipio para sa minahan ng ginto ng
+                OceanaGold. Nagsampa ng kaso para sa 13 pamilyang Ifugao na dating
+                nagtatanim ng palay at sitrus. Noong 2008, sinabi ng korte na ang
+                demolisyon ay "tainted with irregularity and contrary to law."
+              </p>
+              <p class="lu-src">Sanggunian: <a href="https://www.gmanetwork.com/news/money/content/102315/court-says-demolition-in-mining-project-illegal/story/" target="_blank" rel="noopener">GMA News, 2008</a>, <a href="https://greenleft.org.au/node/56573" target="_blank" rel="noopener">Green Left, 2013</a></p>
+            </li>
+            <li>
+              <p class="lu-kind">TAPUNAN NG BASURA</p>
+              <p class="lu-place">San Mateo, Rizal</p>
+              <p>
+                Noong 2009, nagreklamo ang isang samahan ng mga magsasaka sa
+                kabundukan, na may mahigit 200 pamilya, na napapaalis sila ng
+                bagong 19-ektaryang landfill. Ilang henerasyon na nilang sinasaka
+                ang lugar, at ayon sa kanila, nanganganib na ang kanilang kabuhayan
+                dahil sa tambakan.
+              </p>
+              <p class="lu-src">Sanggunian: <a href="https://www.philstar.com/nation/2009/05/31/472589/farmers-decry-new-san-mateo-landfill" target="_blank" rel="noopener">Philstar, 2009</a></p>
+            </li>
+            <li class="lu-feature">
+              <p class="lu-kind">DATA CENTER: PAX SILICA</p>
+              <p class="lu-place">Capas, Tarlac, 2026</p>
+              <p>
+                May planong 1,600 ektaryang Pax Silica hub sa New Clark City para
+                sa AI at mga data center. Ayon sa magsasakang si Miriam Ventura,
+                mga 500 pamilya sa Barangay Sta. Lucia pa lang ang maaapektuhan.
+                Naninindigan ang mga Aeta ng Sitio Sapang Kawayan na hindi sila
+                aalis sa kanilang lupang ninuno.
+              </p>
+              <p class="lu-src">Sanggunian: <a href="https://www.gmanetwork.com/news/topstories/regions/997581/aeta-pax-silica-capas-tarlac-ancestral-domain/story/" target="_blank" rel="noopener">GMA News, Agosto 6, 2026</a>, <a href="https://www.philstar.com/nation/2026/08/10/2548202/farmers-aeta-group-push-petition-vs-pax-silica" target="_blank" rel="noopener">Philstar, Agosto 10, 2026</a></p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 2. KASAYSAYAN ============ -->
+    <section class="sec sec-soil" id="kasaysayan">
+      <canvas class="underground" id="underground" aria-hidden="true"></canvas>
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="stage-tag">STAGE 2</span>
+          <h2 class="sec-title">KASAYSAYAN</h2>
+          <p class="sec-lead">
+            Mula sa enkomyenda hanggang ngayon, iisa ang tanong ng magsasaka:
+            <strong>kanino ang lupa?</strong> Ito ang mahahalagang yugto.
+          </p>
+        </header>
+        <ol class="timeline">
+          <li class="tl-era"><span>PANAHON NG KOLONYALISMO</span></li>
+          <li class="tl-item">
+            <span class="tl-year green">BAGO 1521</span>
+            <div class="tl-card px-box">
+              <h3>LUPA NG BARANGAY</h3>
+              <p>
+                Bago dumating ang mga Espanyol, barangay ang batayang yunit ng
+                lipunan. Malaking bahagi ng lupa ay sama-samang ginagamit at
+                sinasaka ng komunidad.
+              </p>
+            </div>
+          </li>
+          <li class="tl-item">
+            <span class="tl-year">1570s</span>
+            <div class="tl-card px-box">
+              <h3>ENKOMYENDA</h3>
+              <p>
+                Ibinigay ng Hari ng Espanya sa mga opisyal at sundalo ang
+                karapatang maningil ng tributo at magpatrabaho sa mga nakatira sa
+                isang lugar. Hindi ito titulo ng lupa, pero ginamit ito ng ilang
+                encomendero para makakuha ng lupain.
+              </p>
+            </div>
+          </li>
+          <li class="tl-item">
+            <span class="tl-year">1700s-1800s</span>
+            <div class="tl-card px-box">
+              <h3>ASYENDA AT SISTEMANG KASAMÁ</h3>
+              <p>
+                Lumawak ang mga asyenda ng tabako, tubo, abaka at indigo para sa
+                eksport. Lumaganap ang sistemang kasamá: ang
+                magsasaka ang nagbubungkal, pero malaking bahagi ng ani ay
+                napupunta sa may-ari bilang upa.
+              </p>
+            </div>
+          </li>
+          <li class="tl-item">
+            <span class="tl-year red">1896</span>
+            <div class="tl-card px-box">
+              <h3>PAG-AALSA AT REBOLUSYON</h3>
+              <p>
+                Tinatayang 200 pag-aalsa ang naganap bago ang 1896, gaya nina Sumuroy
+                at Dagohoy. Noong 1896, sumiklab ang Rebolusyon ng Katipunan
+                laban sa kolonyal at pyudal na paghahari ng Espanya.
+              </p>
+            </div>
+          </li>
+          <li class="tl-item">
+            <span class="tl-year">1898</span>
+            <div class="tl-card px-box">
+              <h3>PANAHON NG AMERIKANO <small>1898-1946</small></h3>
+              <p>
+                Hindi binuwag ang mga asyenda. Pinalawak pa at pinalakas ang mga
+                panginoong maylupa para sa eksport ng asukal, abaka at niyog.
+                Nabangkarote ang maraming maliliit na magsasakang may sariling
+                lupa.
+              </p>
+            </div>
+          </li>
+          <li class="tl-item">
+            <span class="tl-year">1920s</span>
+            <div class="tl-card px-box">
+              <h3>NAGKAISA ANG MGA MAGSASAKA</h3>
+              <p>
+                Naglitawan ang mga samahang magsasaka at unyon, at sumiklab ang
+                maraming pag-aalsa sa kanayunan, gaya ng mga Colorum. Noong
+                1933, ipinasa ang Rice Share Tenancy Act, pero nanatili ang
+                sistemang paghahati ng ani.
+              </p>
+            </div>
+          </li>
+          <li class="tl-era"><span>PAGKATAPOS NG 1946</span></li>
+          <li class="tl-item">
+            <span class="tl-year">1950s</span>
+            <div class="tl-card px-box">
+              <h3>“HUWAD NA REPORMA”</h3>
+              <p>
+                Sa halip na ipamahagi ang mga asyenda, inilipat ang mga
+                magsasaka sa malalayong “prontera” at itinayo ang mga
+                kooperatibang hindi naman pinamunuan ng magsasaka. Marahas
+                namang sinupil ang mga kilusang magsasaka sa Gitna at Timog
+                Luzon.
+              </p>
+            </div>
+          </li>
+          <li class="tl-item">
+            <span class="tl-year">1963</span>
+            <div class="tl-card px-box">
+              <h3>AGRICULTURAL LAND REFORM CODE <small>RA 3844</small></h3>
+              <p>
+                Layunin daw nitong wakasan ang kasamá at gawing leaseholder ang
+                mga magsasaka, pero kulang sa pondo at puno ng exemption, kaya
+                kakaunti ang aktwal na nakinabang.
+              </p>
+            </div>
+          </li>
+          <li class="tl-era"><span>MGA BATAS SA REPORMA SA LUPA</span></li>
+          <li class="tl-item">
+            <span class="tl-year">1972</span>
+            <div class="tl-card px-box">
+              <h3>PD 27</h3>
+              <p>
+                Ipinangako ang lupa sa mga magsasaka ng palay at mais, pero
+                kailangan itong bayaran nang hulugan, at hindi sakop ang ibang
+                pananim gaya ng tubo at niyog.
+              </p>
+            </div>
+          </li>
+          <li class="tl-item">
+            <span class="tl-year red">1987</span>
+            <div class="tl-card px-box">
+              <h3>MENDIOLA MASSACRE <small>Enero 22</small></h3>
+              <p>
+                Nagmartsa ang mga magsasaka patungong Malacañang para humingi ng
+                tunay na reporma sa lupa. Pinaputukan sila; 13 ang napatay.
+              </p>
+              <button type="button" class="px-btn small red rv-btn" data-real-video="mendiola"><i class="ico ico-warn" aria-hidden="true"></i> TOTOONG VIDEO</button>
+              <p class="rv-hint">May babala bago ipakita. Ikaw ang pipili kung manonood.</p>
+            </div>
+          </li>
+          <li class="tl-item">
+            <span class="tl-year">1988</span>
+            <div class="tl-card px-box">
+              <h3>CARP <small>RA 6657</small></h3>
+              <p>
+                “Lupa para sa nagbubungkal” ang pangako. Pero pinahintulutan ang
+                stock distribution option at maraming exemption: mga butas na
+                ginamit ng malalaking asyenda.
+              </p>
+            </div>
+          </li>
+          <li class="tl-item">
+            <span class="tl-year red">2004</span>
+            <div class="tl-card px-box">
+              <h3>HACIENDA LUISITA MASSACRE <small>Nobyembre 16</small></h3>
+              <p>
+                Marahas na binuwag ang welga ng mga manggagawang-bukid sa
+                Tarlac. Pito ang napatay.
+              </p>
+              <button type="button" class="px-btn small red rv-btn" data-real-video="luisita"><i class="ico ico-warn" aria-hidden="true"></i> TOTOONG VIDEO</button>
+              <p class="rv-hint">May babala bago ipakita. Ikaw ang pipili kung manonood.</p>
+            </div>
+          </li>
+          <li class="tl-item">
+            <span class="tl-year">2009</span>
+            <div class="tl-card px-box">
+              <h3>CARPER <small>RA 9700</small></h3>
+              <p>
+                Pinalawig ang CARP hanggang Hunyo 30, 2014. Natapos ang palugit,
+                pero marami pa ring lupang hindi naipamahagi.
+              </p>
+            </div>
+          </li>
+          <li class="tl-item">
+            <span class="tl-year">2012</span>
+            <div class="tl-card px-box">
+              <h3>DESISYON SA LUISITA</h3>
+              <p>
+                Iniutos ng Korte Suprema na ipamahagi ang lupa ng Hacienda
+                Luisita sa mga manggagawang-bukid. Ang laban para sa aktwal na
+                pagbubungkal ay nagpapatuloy.
+              </p>
+            </div>
+          </li>
+          <li class="tl-item">
+            <span class="tl-year">2019</span>
+            <div class="tl-card px-box">
+              <h3>RICE TARIFFICATION LAW <small>RA 11203</small></h3>
+              <p>
+                Binuksan nang malawakan ang pag-angkat ng bigas. Maraming
+                magsasaka ng palay ang nagreklamo ng pagbagsak ng presyo ng
+                kanilang ani.
+              </p>
+            </div>
+          </li>
+          <li class="tl-item">
+            <span class="tl-year">2023</span>
+            <div class="tl-card px-box">
+              <h3>RA 11953</h3>
+              <p>
+                Binura ng New Agrarian Emancipation Act ang utang sa
+                amortisasyon ng mga agrarian reform beneficiary. Isang hakbang
+                ito, pero hindi nito binibigyan ng lupa ang mga magsasakang wala
+                pa ring sariling lupa.
+              </p>
+            </div>
+          </li>
+          <li class="tl-item">
+            <span class="tl-year">2026</span>
+            <div class="tl-card px-box">
+              <h3>PAX SILICA <small>Capas, Tarlac</small></h3>
+              <p>
+                Planong 1,600 ektaryang hub para sa AI at mga data center sa New
+                Clark City, sa ilalim ng inisyatibang pinamumunuan ng Estados
+                Unidos. Nangangamba ang mga Aeta at magsasaka na mapaalis sa
+                kanilang lupa, at daan-daang libo ang lumagda sa petisyon laban
+                dito. <a href="#pinapaalis">Basahin pa</a>
+              </p>
+              <button type="button" class="px-btn small rv-btn" data-real-video="pax"><i class="ico ico-play" aria-hidden="true"></i> PANOORIN ANG VIDEO</button>
+              <p class="rv-hint">Maikling bahagi mula sa dokumentaryo ni Jessica Soho.</p>
+            </div>
+          </li>
+          <li class="tl-item">
+            <span class="tl-year green">NGAYON</span>
+            <div class="tl-card px-box">
+              <h3>ANG LABAN AY TULOY</h3>
+              <p>
+                Patuloy ang panawagan na ipasa ang Genuine Agrarian Reform Bill:
+                libreng pamamahagi ng lupa sa mga magsasaka.
+              </p>
+            </div>
+          </li>
+        </ol>
+        <aside class="rich-land px-box">
+          <p class="rich-title">
+            <i class="ico ico-star" aria-hidden="true"></i> MAYAMAN ANG LUPA,
+            MAHIRAP ANG MAGSASAKA
+          </p>
+          <p>
+            Sa ilalim ng lupang binubungkal ng magsasaka ay may ginto, pilak,
+            tanso, nikel at karbon. Malawak at mataba ang lupain, angkop sa
+            iba't ibang pananim. Mayaman ang Pilipinas, pero ang mga nagpapakain
+            sa bayan ang kabilang sa pinakamahihirap.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ 3. TUNAY ============ -->
+    <section class="sec sec-sky" id="tunay">
+      <canvas class="decor" data-decor="sky" aria-hidden="true"></canvas>
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="stage-tag">STAGE 3</span>
+          <h2 class="sec-title">ANO ANG “TUNAY”?</h2>
+          <p class="sec-lead">
+            Hindi sapat ang may batas. Ang tanong:
+            <strong>napasakamay ba talaga ng magsasaka ang lupa?</strong>
+          </p>
+        </header>
+        <div
+          class="versus px-box"
+          role="table"
+          aria-label="Paghahambing ng kulang at tunay na reporma"
+        >
+          <div class="vs-row vs-head" role="row">
+            <div role="columnheader" class="vs-bad">
+              <i class="ico ico-x" aria-hidden="true"></i> KULANG / HUWAD
+            </div>
+            <div role="columnheader" class="vs-good">
+              <i class="ico ico-check" aria-hidden="true"></i> TUNAY
+            </div>
+          </div>
+          <div class="vs-row" role="row">
+            <div role="cell" class="vs-bad">
+              Binabayaran ng magsasaka ang lupa
+            </div>
+            <div role="cell" class="vs-good">LIBRENG pamamahagi ng lupa</div>
+          </div>
+          <div class="vs-row" role="row">
+            <div role="cell" class="vs-bad">
+              May exemption, stock distribution, at butas
+            </div>
+            <div role="cell" class="vs-good">
+              Saklaw ang lahat ng lupang agrikultural
+            </div>
+          </div>
+          <div class="vs-row" role="row">
+            <div role="cell" class="vs-bad">
+              Pinapayagan ang land conversion
+            </div>
+            <div role="cell" class="vs-good">
+              Ipinagbabawal ang pag-convert ng sakahan
+            </div>
+          </div>
+          <div class="vs-row" role="row">
+            <div role="cell" class="vs-bad">
+              Lupa lang (kung meron man), walang suporta
+            </div>
+            <div role="cell" class="vs-good">
+              May binhi, irigasyon, makinarya, at pautang na walang patong.
+            </div>
+          </div>
+          <div class="vs-row" role="row">
+            <div role="cell" class="vs-bad">Desisyon mula sa itaas</div>
+            <div role="cell" class="vs-good">
+              Pinamumunuan ng mga magsasaka mismo
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4. PANAWAGAN ============ -->
+    <section class="sec sec-paper" id="panawagan">
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="stage-tag">STAGE 4</span>
+          <h2 class="sec-title">MGA PANAWAGAN</h2>
+          <p class="sec-lead">
+            Ito ang hinihingi ng mga magsasaka, at ng sinumang kumakain ng
+            kanilang ani.
+          </p>
+        </header>
+        <ol class="demands">
+          <li class="demand px-box">
+            <span class="d-num">1</span>
+            <p>
+              <strong>Libreng pamamahagi ng lupa</strong> sa mga magsasaka at
+              manggagawang-bukid.
+            </p>
+          </li>
+          <li class="demand px-box">
+            <span class="d-num">2</span>
+            <p>
+              <strong>Itigil ang land conversion</strong> at pangangamkam ng
+              lupang sakahan.
+            </p>
+          </li>
+          <li class="demand px-box">
+            <span class="d-num">3</span>
+            <p>
+              <strong>Suporta sa produksyon</strong> at makatarungang presyo ng
+              ani.
+            </p>
+          </li>
+          <li class="demand px-box">
+            <span class="d-num">4</span>
+            <p>
+              <strong>Hustisya</strong> para sa mga biktima ng karahasan sa
+              Mendiola, Luisita, at iba pa.
+            </p>
+          </li>
+          <li class="demand px-box">
+            <span class="d-num">5</span>
+            <p>
+              <strong>Ipasa ang Genuine Agrarian Reform Bill</strong> (GARB).
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ 5. FAQ ============ -->
+    <section class="sec sec-grass" id="faq">
+      <canvas class="decor" data-decor="field" aria-hidden="true"></canvas>
+      <div class="wrap narrow">
+        <header class="sec-head">
+          <span class="stage-tag">STAGE 5</span>
+          <h2 class="sec-title">MGA TANONG</h2>
+        </header>
+        <div class="faq">
+          <details class="px-box">
+            <summary>Hindi ba may CARP na?</summary>
+            <p>
+              Mayroon, pero hindi nito natapos ang trabaho. Dahil sa mga butas
+              at mabagal na pagpapatupad, may mga lupang hindi naipamahagi, at
+              may mga benepisyaryong nawalan ulit ng lupa dahil sa utang, upa, o
+              conversion.
+            </p>
+          </details>
+          <details class="px-box">
+            <summary>Bakit dapat libre ang lupa?</summary>
+            <p>
+              Ilang henerasyon nang binubungkal ng mga magsasaka ang lupa.
+              Matagal na nila itong inaalagaan at matagal na nilang pinapakain
+              ang bansa. Ang lupa ay nabayaran na nila gamit ang pawis, upa, at
+              bahagi ng ani. Ang paniningil pa sa kanila ay nagtutulak lang sa
+              kanila na manatiling lubog sa utang.
+            </p>
+          </details>
+          <details class="px-box">
+            <summary>Taga-lungsod ako. Ano’ng kinalaman ko rito?</summary>
+            <p>
+              Ang bawat kain mo ay galing sa magsasaka. Kapag walang lupa at
+              suporta ang magsasaka, humihina ang lokal na produksyon, tumataas
+              ang presyo ng pagkain, at lalo tayong umaasa sa angkat.
+            </p>
+          </details>
+          <details class="px-box">
+            <summary>Ano ang GARB?</summary>
+            <p>
+              Ang Genuine Agrarian Reform Bill ay panukalang batas na ilang ulit
+              nang inihain sa Kongreso ng mga kinatawan ng magsasaka. Layunin
+              nitong ipamahagi nang libre ang lupa at isara ang mga butas ng mga
+              naunang programa.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 6. KUMILOS ============ -->
+    <section class="sec sec-sky" id="kumilos">
+      <canvas class="decor" data-decor="sky" aria-hidden="true"></canvas>
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="stage-tag">FINAL STAGE</span>
+          <h2 class="sec-title">PAANO KA MAKAKATULONG?</h2>
+        </header>
+        <div class="cards">
+          <article class="card px-box">
+            <span class="card-num">01</span>
+            <h3>MAG-ARAL</h3>
+            <p>
+              Alamin ang kwento ng mga magsasaka at ang kasaysayan ng reporma sa
+              lupa.
+            </p>
+          </article>
+          <article class="card px-box">
+            <span class="card-num">02</span>
+            <h3>MAGBAHAGI</h3>
+            <p>
+              Ikalat o ipasa ang website sa mga kaibigan, kapamilya, o kakilala.
+            </p>
+            <button id="shareBtn" class="px-btn small blue">
+              <i class="ico ico-ext" aria-hidden="true"></i> IBAHAGI
+            </button>
+          </article>
+          <article class="card px-box">
+            <span class="card-num">03</span>
+            <h3>SUPORTAHAN</h3>
+            <p>
+              Bumili nang direkta sa lokal na magsasaka, palengke, at
+              kooperatiba. Magsalita at ikuwento sa iba ang iyong nalalaman.
+            </p>
+          </article>
+          <article class="card px-box">
+            <span class="card-num">04</span>
+            <h3>MAKIISA</h3>
+            <p>
+              Sumama sa mga talakayan, exposure trip, at mapayapang pagkilos
+              para sa lupa at hustisya, para palakasin ang karapatan,
+              kapayapaan, at katarungan.
+            </p>
+          </article>
+        </div>
+
+
+        <div class="help-grid">
+          <section
+            class="help-panel px-box"
+            id="donate"
+            aria-labelledby="donateTitle"
+          >
+            <h3 id="donateTitle"><span class="px-heart"></span> MAG-DONATE</h3>
+            <p class="help-lead">
+              Suportahan ang mga magsasaka at ang kanilang laban para sa lupa.
+            </p>
+            <ul class="link-list">
+              <li>
+                <a
+                  href="http://www.pakisama.com/donate/"
+                  target="_blank"
+                  rel="noopener"
+                  >PAKISAMA: Donate</a
+                >
+                <span
+                  >Pambansang Kilusan ng mga Samahang Magsasaka: konpederasyon
+                  ng maliliit na magsasaka.</span
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.oneearth.org/projects/empowering-the-peasant-movement-of-the-philippines-to-secure-land-tenure-rights-and-create-a-climate-resilient-food-system/"
+                  target="_blank"
+                  rel="noopener"
+                  >One Earth × KMP: Collective gardens</a
+                >
+                <span
+                  >Pondo para sa agroecological na sama-samang taniman ng mga
+                  magsasakang napaalis sa lupa.</span
+                >
+              </li>
+              <li>
+                <a
+                  href="https://donorbox.org/support-peasant-organizers-in-the-philippines"
+                  target="_blank"
+                  rel="noopener"
+                  >ICHRP: Peasant organizers</a
+                >
+                <span
+                  >International Coalition for Human Rights in the Philippines:
+                  suporta sa mga organisador ng magsasaka.</span
+                >
+              </li>
+              <li>
+                <a
+                  href="https://caritas.org.ph/alay-kapwa/be-1n-a-million/"
+                  target="_blank"
+                  rel="noopener"
+                  >Caritas Philippines: Alay Kapwa</a
+                >
+                <span
+                  >Social action network na may tulong-kabuhayan para sa mga
+                  magsasaka.</span
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.forourfarmers.org/donate"
+                  target="_blank"
+                  rel="noopener"
+                  >For Our Farmers PH, Inc.</a
+                >
+                <span
+                  >Mga proyektong nagpapalakas ng kabuhayan ng mga magsasaka at
+                  mangingisda. Tumatanggap ng pera at in-kind na donasyon.</span
+                >
+              </li>
+              <li>
+                <a
+                  href="https://masipag.org/contact-us/"
+                  target="_blank"
+                  rel="noopener"
+                  >MASIPAG</a
+                >
+                <span
+                  >Magsasaka at Siyentipiko para sa Pag-unlad ng Agrikultura.
+                  Walang donate page ang kanilang site; makipag-ugnayan sa kanila
+                  para magbigay ng suporta.</span
+                >
+              </li>
+            </ul>
+          </section>
+
+          <section class="help-panel px-box" aria-labelledby="joinTitle">
+            <h3 id="joinTitle">
+              <i class="ico ico-star" aria-hidden="true"></i> SUMALI SA
+              ORGANISASYON
+            </h3>
+            <p class="help-lead">
+              Mga organisasyong lumalaban para sa karapatan ng magsasaka.
+            </p>
+            <ul class="link-list">
+              <li>
+                <a
+                  href="https://peasantmovementph.com/"
+                  target="_blank"
+                  rel="noopener"
+                  >Kilusang Magbubukid ng Pilipinas (KMP)</a
+                >
+                <span
+                  >Pinakamalaking pambansang organisasyon ng magsasaka, itinatag
+                  noong 1985.</span
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.facebook.com/anakbayanphils/"
+                  target="_blank"
+                  rel="noopener"
+                  >Anakbayan</a
+                >
+                <span
+                  >Organisasyon ng kabataan. May mga chapter sa ilang paaralan;
+                  alamin kung may chapter sa inyo.</span
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.facebook.com/saka.pilipinas"
+                  target="_blank"
+                  rel="noopener"
+                  >SAKA</a
+                >
+                <span>Alyansa ng mga artista para sa lupa at pagkain.</span>
+              </li>
+              <li>
+                <a
+                  href="https://amihanwomen.org/"
+                  target="_blank"
+                  rel="noopener"
+                  >AMIHAN</a
+                >
+                <span>Organisasyon ng kababaihang magsasaka.</span>
+              </li>
+              <li>
+                <a
+                  href="https://www.pakisama.com/"
+                  target="_blank"
+                  rel="noopener"
+                  >PAKISAMA</a
+                >
+                <span>Kilusan ng maliliit na magsasaka sa kanayunan.</span>
+              </li>
+              <li>
+                <a href="https://masipag.org/" target="_blank" rel="noopener"
+                  >MASIPAG</a
+                >
+                <span
+                  >Magsasaka at siyentipiko para sa binhi at organikong
+                  pagsasaka.</span
+                >
+              </li>
+            </ul>
+            <p class="help-note">
+              Tip: alamin muna ang bawat organisasyon at kumpirmahin ang mga
+              detalye sa kanilang opisyal na pahina bago mag-donate o sumali.
+            </p>
+          </section>
+        </div>
+
+        <div class="finder px-box" id="hanapin">
+          <h3>
+            <i class="ico ico-star" aria-hidden="true"></i> HANAPIN ANG
+            ORGANISASYONG PARA SA IYO
+          </h3>
+          <p>
+            Mga organisasyon na maari mong salihan. <strong>Ako ay...</strong>
+          </p>
+          <div
+            class="finder-opts"
+            role="group"
+            aria-label="Piliin kung sino ka"
+          >
+            <button
+              type="button"
+              class="px-btn small paper"
+              data-who="estudyante"
+            >
+              ESTUDYANTE
+            </button>
+            <button
+              type="button"
+              class="px-btn small paper"
+              data-who="magsasaka"
+            >
+              MAGSASAKA
+            </button>
+            <button
+              type="button"
+              class="px-btn small paper"
+              data-who="kababaihan"
+            >
+              BABAE / INA
+            </button>
+            <button type="button" class="px-btn small paper" data-who="artista">
+              ARTISTA / MANLILIKHA
+            </button>
+            <button
+              type="button"
+              class="px-btn small paper"
+              data-who="agrikultura"
+            >
+              MAHILIG SA PAGSASAKA
+            </button>
+            <button
+              type="button"
+              class="px-btn small paper"
+              data-who="mananaliksik"
+            >
+              MANANALIKSIK
+            </button>
+            <button type="button" class="px-btn small paper" data-who="donor">
+              GUSTONG MAG-DONATE
+            </button>
+          </div>
+          <div id="finderResult" class="finder-result" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 7. TUNGKOL SA AMIN ============ -->
+    <section class="sec sec-paper" id="tungkol">
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="stage-tag">TUNGKOL SA AMIN</span>
+          <h2 class="sec-title">SINO KAMI?</h2>
+          <p class="sec-lead">
+            Kami ay
+            <strong
+              >mga mag-aaral mula sa Technological University of the
+              Philippines</strong
+            >
+            na naniniwalang ang kaalaman ay tungo sa kaunlaran. Ang pag-alam sa
+            kalagayan at kwento ng magsasaka ay daan upang mamulat tayo sa
+            kalagayan ng bansa, at sa dahilan kung bakit nananatili itong
+            mahirap.
+          </p>
+        </header>
+        <div class="about-grid">
+          <article class="about-card px-box">
+            <h3>ANG AMING MISYON</h3>
+            <p>
+              Ipaalam ang kalagayan ng mga magsasaka at ang dahilan kung bakit
+              kailangan ang tunay na reporma sa lupa. Iugnay ang mga taong nais
+              kumilos sa mga organisasyong matagal nang nakikipaglaban para sa
+              magsasaka.
+            </p>
+          </article>
+          <article class="about-card px-box">
+            <h3>ANG GINAWA NAMIN</h3>
+            <ul class="tick-list">
+              <li>Ang buod ng kasaysayan ng lupa at magsasaka</li>
+              <li>
+                Isang website na may laro para maging kasiya-siya ang pag-aaral
+              </li>
+              <li>
+                Listahan ng mga organisasyon at NGO na maaaring salihan o
+                makipag-ugnayan
+              </li>
+            </ul>
+          </article>
+          <article class="about-card px-box">
+            <h3>ANG AMING PINANINIWALAAN</h3>
+            <ul class="tick-list">
+              <li><strong>Lupa ay buhay</strong>: dapat sa nagbubungkal</li>
+              <li>
+                <strong>Katotohanan</strong>: bawat datos ay may sanggunian
+              </li>
+              <li>
+                <strong>Paggalang</strong>: sa kwento at dignidad ng magsasaka
+              </li>
+            </ul>
+          </article>
+        </div>
+        <h3 class="sub-title" id="team">ANG TEAM</h3>
+        <div class="team-grid">
+          <article class="member px-box">
+            <img
+              class="avatar photo"
+              src="assets/team/lyla.jpg"
+              width="400"
+              height="400"
+              alt="Larawan ni Lyla Jane L. Villanueva"
+              loading="lazy"
+            />
+            <h4>Lyla Jane L. Villanueva</h4>
+            <p class="role">Leader, Laro at UX</p>
+            <p class="quote">“Ang karapatan ay hindi dapat pinaghihirapan.”</p>
+          </article>
+          <article class="member px-box">
+            <img
+              class="avatar photo"
+              src="assets/team/paul.jpg"
+              width="400"
+              height="400"
+              alt="Larawan ni Paul Nathan R. Valeña"
+              loading="lazy"
+            />
+            <h4>Paul Nathan R. Valeña</h4>
+            <p class="role">Disenyo at UI</p>
+            <p class="quote">“Hangga’t may magsasakang walang lupa, hindi pa tapos ang laban sa tunay na reporma.”</p>
+          </article>
+          <article class="member px-box">
+            <img
+              class="avatar photo"
+              src="assets/team/anne.jpg"
+              width="400"
+              height="400"
+              alt="Larawan ni Anne Janelle P. Fronda"
+              loading="lazy"
+            />
+            <h4>Anne Janelle P. Fronda</h4>
+            <p class="role">Mananaliksik at Manunulat</p>
+            <p class="quote">“Ang tunay na reporma sa lupa ay katarungan para sa lahat, hindi pribilehiyo ng iilan.”</p>
+          </article>
+          <article class="member px-box">
+            <img
+              class="avatar photo"
+              src="assets/team/coleen.jpg"
+              width="400"
+              height="400"
+              alt="Larawan ni Krishna Coleen P. Vengua"
+              loading="lazy"
+            />
+            <h4>Krishna Coleen P. Vengua</h4>
+            <p class="role">Mananaliksik at Manunulat</p>
+            <p class="quote">“Lupa ang ugat, kaya magsasaka ang dapat umangat.”</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 8. MAPAGKUKUNAN ============ -->
+    <section class="sec sec-grass" id="mapagkukunan">
+      <canvas class="decor" data-decor="field" aria-hidden="true"></canvas>
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="stage-tag">MGA MAPAGKUKUNAN</span>
+          <h2 class="sec-title">MATUTO AT KUMILOS PA</h2>
+          <p class="sec-lead">
+            Mga batas, pananaliksik, at paraan para iparating ang iyong boses.
+          </p>
+        </header>
+        <div class="res-grid">
+          <article class="res-card px-box">
+            <h3>
+              <canvas
+                class="btn-ico"
+                data-icon="scroll"
+                width="12"
+                height="12"
+                aria-hidden="true"
+              ></canvas>
+              MGA BATAS
+            </h3>
+            <ul class="link-list">
+              <li>
+                <a
+                  href="https://ldr.senate.gov.ph/sites/default/files/2022-04/RA%206657.pdf"
+                  target="_blank"
+                  rel="noopener"
+                  >RA 6657: CARP, 1988</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://lawphil.net/statutes/repacts/ra2009/ra_9700_2009.html"
+                  target="_blank"
+                  rel="noopener"
+                  >RA 9700: CARPER, 2009</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://lawphil.net/statutes/presdecs/pd1972/pd_27_1972.html"
+                  target="_blank"
+                  rel="noopener"
+                  >PD 27: 1972</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://lawphil.net/statutes/repacts/ra1963/ra_3844_1963.html"
+                  target="_blank"
+                  rel="noopener"
+                  >RA 3844: Land Reform Code, 1963</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://lawphil.net/statutes/repacts/ra2019/ra_11203_2019.html"
+                  target="_blank"
+                  rel="noopener"
+                  >RA 11203: Rice Tariffication, 2019</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://lawphil.net/statutes/repacts/ra2023/ra_11953_2023.html"
+                  target="_blank"
+                  rel="noopener"
+                  >RA 11953: Agrarian Emancipation, 2023</a
+                >
+              </li>
+            </ul>
+          </article>
+          <article class="res-card px-box">
+            <h3>
+              <canvas
+                class="btn-ico"
+                data-icon="search"
+                width="12"
+                height="12"
+                aria-hidden="true"
+              ></canvas>
+              KASAYSAYAN AT PANANALIKSIK
+            </h3>
+            <ul class="link-list">
+              <li>
+                <a
+                  href="https://en.wikipedia.org/wiki/Land_reform_in_the_Philippines"
+                  target="_blank"
+                  rel="noopener"
+                  >Land reform in the Philippines</a
+                ><span>Kabuuang kasaysayan</span>
+              </li>
+              <li>
+                <a
+                  href="https://en.wikipedia.org/wiki/Mendiola_massacre"
+                  target="_blank"
+                  rel="noopener"
+                  >Mendiola massacre, 1987</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://en.wikipedia.org/wiki/Hacienda_Luisita"
+                  target="_blank"
+                  rel="noopener"
+                  >Hacienda Luisita</a
+                >
+              </li>
+              <li>
+                <a href="https://www.ibon.org/" target="_blank" rel="noopener"
+                  >IBON Foundation</a
+                ><span>Pananaliksik sa ekonomiya at agrikultura</span>
+              </li>
+            </ul>
+          </article>
+          <article class="res-card px-box">
+            <h3>
+              <canvas
+                class="btn-ico"
+                data-icon="megaphone"
+                width="12"
+                height="12"
+                aria-hidden="true"
+              ></canvas>
+              IPARATING ANG BOSES
+            </h3>
+            <ul class="link-list">
+              <li>
+                <a href="https://www.dar.gov.ph/" target="_blank" rel="noopener"
+                  >Department of Agrarian Reform</a
+                >
+              </li>
+              <li>
+                <a href="https://senate.gov.ph/" target="_blank" rel="noopener"
+                  >Senado ng Pilipinas</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.congress.gov.ph/"
+                  target="_blank"
+                  rel="noopener"
+                  >Kapulungan ng mga Kinatawan</a
+                >
+              </li>
+            </ul>
+            <p class="res-note">
+              Sumulat sa iyong senador o kinatawan. Kopyahin ang liham at
+              palitan ang nasa [ ].
+            </p>
+            <button id="letterBtn" type="button" class="px-btn small blue">
+              KOPYAHIN ANG LIHAM
+            </button>
+          </article>
+          <article class="res-card px-box">
+            <h3>
+              <canvas
+                class="btn-ico"
+                data-icon="book"
+                width="12"
+                height="12"
+                aria-hidden="true"
+              ></canvas>
+              PARA SA KLASE
+            </h3>
+            <p class="res-note">
+              Gamitin ang laro at site sa talakayan. Mga tanong:
+            </p>
+            <ol class="q-list">
+              <li>Bakit hindi sapat na may batas sa reporma sa lupa?</li>
+              <li>Paano nagsimula ang sistemang kasamá?</li>
+              <li>Ano ang kaibahan ng “kulang” at “tunay” na reporma?</li>
+              <li>Paano naaapektuhan ng lupa ang presyo ng pagkain natin?</li>
+              <li>Ano ang kaya mong gawin bilang estudyante?</li>
+            </ol>
+            <a href="index.html" class="px-btn small green"
+              ><i class="ico ico-play" aria-hidden="true"></i> LARUIN ANG
+              INTRO</a
+            >
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 9. MGA PETSA ============ -->
+    <section class="sec sec-sky" id="petsa">
+      <canvas class="decor" data-decor="sky" aria-hidden="true"></canvas>
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="stage-tag">KALENDARYO</span>
+          <h2 class="sec-title">MGA PETSANG DAPAT TANDAAN</h2>
+          <p class="sec-lead">
+            Ang mga araw na ginugunita ng mga magsasaka. Sundan ang mga organisasyon para sa
+            kanilang mga aktibidad.
+          </p>
+        </header>
+        <ol class="cal-grid" id="calGrid"></ol>
+        <div class="cal-actions">
+          <button id="icsBtn" type="button" class="px-btn blue">
+            <canvas
+              class="btn-ico"
+              data-icon="calendar"
+              width="12"
+              height="12"
+              aria-hidden="true"
+            ></canvas>
+            IDAGDAG SA KALENDARYO
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    </main>
+
+    <footer class="footer">
+      <canvas id="walker" aria-hidden="true"></canvas>
+      <div class="footer-soil">
+        <div class="footer-wrap">
+          <div class="footer-top">
+            <div class="f-col f-brand">
+              <p class="f-logo">
+                <canvas
+                  data-icon="coin"
+                  width="12"
+                  height="12"
+                  aria-hidden="true"
+                ></canvas
+                ><span>TUNAY NA REPORMA<br /><em>PARA SA LUPA</em></span>
+              </p>
+              <p>
+                Ang maunlad na bansa ay nagsisimula sa pagpapalakas ng karapatan
+                ng bawat parte ng sector ng Bansa.
+              </p>
+              <p class="f-tag">#TunayNaRepormaSaLupa</p>
+              <p class="f-title">IBAHAGI</p>
+              <div class="share-row">
+                <a
+                  class="share-btn"
+                  id="shareFb"
+                  href="#"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Ibahagi sa Facebook"
+                  >f</a
+                >
+                <a
+                  class="share-btn"
+                  id="shareX"
+                  href="#"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Ibahagi sa X"
+                  >X</a
+                >
+                <a
+                  class="share-btn"
+                  id="shareMail"
+                  href="#"
+                  aria-label="Ibahagi sa email"
+                  >@</a
+                >
+                <button
+                  class="share-btn"
+                  id="shareCopy"
+                  type="button"
+                  aria-label="Kopyahin ang link"
+                >
+                  URL
+                </button>
+              </div>
+            </div>
+            <nav class="f-col" aria-label="Mapa ng site">
+              <p class="f-title">MAPA NG SITE</p>
+              <p class="f-sub">ALAMIN</p>
+              <ul class="f-links">
+                <li><a href="#problema">Problema</a></li>
+                <li><a href="#kasaysayan">Kasaysayan</a></li>
+                <li><a href="#tunay">Tunay?</a></li>
+                <li><a href="#panawagan">Panawagan</a></li>
+                <li><a href="#faq">Mga Tanong</a></li>
+              </ul>
+              <p class="f-sub">KUMILOS</p>
+              <ul class="f-links">
+                <li><a href="#kumilos">Paano Tumulong</a></li>
+                <li><a href="#donate">Mag-donate</a></li>
+                <li><a href="#hanapin">Sumali sa Org</a></li>
+                <li><a href="#petsa">Mga Petsa</a></li>
+              </ul>
+              <p class="f-sub">TUNGKOL</p>
+              <ul class="f-links">
+                <li><a href="#tungkol">Sino Kami?</a></li>
+                <li><a href="#team">Ang Team</a></li>
+                <li><a href="#mapagkukunan">Mapagkukunan</a></li>
+                <li><a href="index.html">Ang Laro</a></li>
+              </ul>
+            </nav>
+            <div class="f-col">
+              <p class="f-title">MGA SANGGUNIAN</p>
+              <ul class="f-refs">
+                <li>
+                  <a
+                    href="https://ldr.senate.gov.ph/sites/default/files/2022-04/RA%206657.pdf"
+                    target="_blank"
+                    rel="noopener"
+                    >RA 6657: CARP, 1988 (Senado, PDF)</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://lawphil.net/statutes/repacts/ra2009/ra_9700_2009.html"
+                    target="_blank"
+                    rel="noopener"
+                    >RA 9700: CARPER, 2009</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://lawphil.net/statutes/presdecs/pd1972/pd_27_1972.html"
+                    target="_blank"
+                    rel="noopener"
+                    >PD 27: 1972</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://lawphil.net/statutes/repacts/ra1963/ra_3844_1963.html"
+                    target="_blank"
+                    rel="noopener"
+                    >RA 3844: 1963</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://lawphil.net/statutes/repacts/ra2019/ra_11203_2019.html"
+                    target="_blank"
+                    rel="noopener"
+                    >RA 11203: 2019</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://lawphil.net/statutes/repacts/ra2023/ra_11953_2023.html"
+                    target="_blank"
+                    rel="noopener"
+                    >RA 11953: 2023</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://en.wikipedia.org/wiki/Land_reform_in_the_Philippines"
+                    target="_blank"
+                    rel="noopener"
+                    >Land reform in the Philippines</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://en.wikipedia.org/wiki/Mendiola_massacre"
+                    target="_blank"
+                    rel="noopener"
+                    >Mendiola massacre</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://en.wikipedia.org/wiki/Hacienda_Luisita"
+                    target="_blank"
+                    rel="noopener"
+                    >Hacienda Luisita</a
+                  >
+                </li>
+                <li>
+                  <a href="https://www.ibon.org/" target="_blank" rel="noopener"
+                    >IBON Foundation</a
+                  >
+                </li>
+                <li>
+                  <a href="https://www.gmanetwork.com/news/topstories/regions/997581/aeta-pax-silica-capas-tarlac-ancestral-domain/story/" target="_blank" rel="noopener">Pax Silica at mga Aeta: GMA News, 2026</a>
+                </li>
+                <li>
+                  <a href="https://www.philstar.com/nation/2026/08/10/2548202/farmers-aeta-group-push-petition-vs-pax-silica" target="_blank" rel="noopener">Petisyon vs Pax Silica: Philstar, 2026</a>
+                </li>
+                <li>
+                  <a href="https://tribune.net.ph/2026/10/23/whose-land-whose-future-farmers-challenge-marcos-policies-pax-silica" target="_blank" rel="noopener">Magsasaka vs Pax Silica: Daily Tribune, 2026</a>
+                </li>
+                <li>
+                  <a href="https://www.gmanetwork.com/news/money/content/102315/court-says-demolition-in-mining-project-illegal/story/" target="_blank" rel="noopener">Minahan sa Didipio: GMA News, 2008</a>
+                </li>
+                <li>
+                  <a href="https://greenleft.org.au/node/56573" target="_blank" rel="noopener">Didipio: Green Left, 2013</a>
+                </li>
+                <li>
+                  <a href="https://www.philstar.com/nation/2009/05/31/472589/farmers-decry-new-san-mateo-landfill" target="_blank" rel="noopener">Landfill sa San Mateo: Philstar, 2009</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="footer-mid">
+            <div class="f-next">
+              <p class="f-title">SUSUNOD NA PETSA</p>
+              <p id="nextDate" class="f-next-date"></p>
+              <a href="#petsa"
+                >Tingnan ang kalendaryo
+                <i class="ico ico-play" aria-hidden="true"></i
+              ></a>
+            </div>
+            <div class="f-cta">
+              <p class="f-title">HANDA KA NA?</p>
+              <div class="f-cta-row">
+                <a href="#hanapin" class="px-btn small green">SUMALI SA ORG</a>
+                <a href="#donate" class="px-btn small">MAG-DONATE</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <p>
+              <span id="year">2026</span> Proyektong adbokasiya ng mga
+              estudyante · Lupa para sa nagbubungkal. Hustisya para sa
+              magsasaka.
+            </p>
+            <div class="fb-links">
+              <button type="button" class="privacy-link" data-privacy>Privacy</button>
+              <a href="#top"
+                ><i class="ico ico-top" aria-hidden="true"></i> ITAAS</a
+              >
+              <a href="index.html" class="px-btn small green"
+                ><i class="ico ico-play" aria-hidden="true"></i> LARUIN ULIT</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="toast" class="toast px-box" role="status" hidden></div>
+
+    <!-- Scripts (order matters):
+       shared/pixel-engine.js  shared pixel art (farmer, scenery, carabao…)
+       learn/learn-data.js     EDIT HERE: icons, finder, calendar dates, letter, share text
+       learn/core.js           helpers used by the files below (toast)
+       learn/page-art.js       draws icons + team avatars
+       learn/hero.js           animated farm at the top + walker above the footer
+       learn/underground.js    soil & minerals behind KASAYSAYAN
+       learn/section-decor.js  field (green) and sky (blue) backgrounds
+       learn/nav.js            menu, dropdowns, progress bar
+       learn/search.js         site search
+       learn/calendar.js       commemoration dates
+       learn/engage.js         share, finder, letter -->
+    <script src="assets/js/shared/pixel-engine.js"></script>
+    <script src="assets/js/shared/real-videos.js"></script>
+    <script src="assets/js/shared/privacy.js"></script>
+    <script src="assets/js/learn/learn-data.js"></script>
+    <script src="assets/js/learn/core.js"></script>
+    <script src="assets/js/learn/page-art.js"></script>
+    <script src="assets/js/learn/hero.js"></script>
+    <script src="assets/js/learn/underground.js"></script>
+    <script src="assets/js/learn/section-decor.js"></script>
+    <script src="assets/js/learn/nav.js"></script>
+    <script src="assets/js/learn/search.js"></script>
+    <script src="assets/js/learn/calendar.js"></script>
+    <script src="assets/js/learn/engage.js"></script>
+  </body>
+</html>
