@@ -125,8 +125,6 @@ After any change, refresh the browser and run `npm run check`.
 - **Facts need a source.** Every number and date on the site comes from a law,
   a report or a news article listed under Mga Sanggunian in the footer. If we
   can't find a source, we don't write it.
-- **No em dashes and no emoji.** We use commas, colons and periods, and our own
-  pixel icons. `npm run check` catches these.
 - **Readable for everyone.** Body text is dark enough to read (at least 4.5:1
   contrast). Everything works with a keyboard. Anything that moves can be
   stopped by clicking the red moving banner under the top scene, and it starts
